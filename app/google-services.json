@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "328065698883",
+    "firebase_url": "https://managecar-6d7b2-default-rtdb.firebaseio.com",
+    "project_id": "managecar-6d7b2",
+    "storage_bucket": "managecar-6d7b2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:328065698883:android:18c2c4780c8337b9ee18f6",
+        "android_client_info": {
+          "package_name": "com.example.nhom3managecar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "328065698883-13uj0sdba1c50s9jq2ns4qrp8fdfcihc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA4voUbRuFLu4ssTpQXGwzQsHeqs3HN_vU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "328065698883-13uj0sdba1c50s9jq2ns4qrp8fdfcihc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
