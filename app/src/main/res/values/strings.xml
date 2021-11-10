@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Nhom3ManageCar</string>
+    <string name="hangHoa_nav">Hàng hóa</string>
+    <string name="kiemKho_nav">Kiểm kho</string>
+    <string name="nhapHang_nav">Nhập hàng</string>
+    <string name="xuatHang_nav">Xuất hàng</string>
+    <string name="baohanh_nav">Bảo hành</string>
+    <string name="lienHe_nav">Liên hệ</string>
+    <string name="dangXuat_nav">Đăng xuất</string>
+    <string name="thoat_nav">Thoát</string>
 </resources>

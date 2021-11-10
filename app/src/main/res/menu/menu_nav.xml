@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_hangHoa"
+            android:title="@string/hangHoa_nav"
+            android:icon="@drawable/ic_hang_hoa_nav"/>
+        <item
+            android:id="@+id/nav_kiemKho"
+            android:title="@string/kiemKho_nav"
+            android:icon="@drawable/ic_kiem_kho_nav"/>
+        <item
+            android:id="@+id/nav_nhapHang"
+            android:title="@string/nhapHang_nav"
+            android:icon="@drawable/ic_nhap_hang_nav"/>
+        <item
+            android:id="@+id/nav_xuatHang"
+            android:title="@string/xuatHang_nav"
+            android:icon="@drawable/ic_xuat_hang_nav"/>
+        <item
+            android:id="@+id/nav_baoHanh"
+            android:title="@string/baohanh_nav"
+            android:icon="@drawable/ic_nhap_hang_nav"/>
+        <item
+            android:id="@+id/nav_lienHe"
+            android:title="@string/lienHe_nav"
+            android:icon="@drawable/ic_lien_he_nav"/>
+        <item
+            android:id="@+id/nav_dangXuat"
+            android:title="@string/dangXuat_nav"
+            android:icon="@drawable/ic_dang_xuat_nav"/>
+        <item
+            android:id="@+id/nav_thoat"
+            android:title="@string/thoat_nav"
+            android:icon="@drawable/ic_thoat_nav"/>
+
+    </group>
+
+
+</menu>
