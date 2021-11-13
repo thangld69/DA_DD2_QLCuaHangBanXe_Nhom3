@@ -136,6 +136,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 public void onClick(DialogInterface dialogInterface, int i) {
                     finish();
                     System.exit(0);
+                    //onBackPressed();
                 }
             });
             builder.setNegativeButton("Không", new DialogInterface.OnClickListener() {

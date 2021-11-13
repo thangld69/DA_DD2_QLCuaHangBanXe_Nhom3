@@ -27,7 +27,7 @@
         <item
             android:id="@+id/nav_baoHanh"
             android:title="@string/baohanh_nav"
-            android:icon="@drawable/ic_nhap_hang_nav"/>
+            android:icon="@drawable/ic_bao_hanh_nav"/>
         <item
             android:id="@+id/nav_lienHe"
             android:title="@string/lienHe_nav"

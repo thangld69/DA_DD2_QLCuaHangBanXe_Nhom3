@@ -3,6 +3,8 @@
     <string name="app_name">Nhom3ManageCar</string>
     <string name="dangNhap">Đăng Nhập</string>
     <string name="dangKy">Đăng Ký</string>
+    <string name="xacNhan">Xác Nhận</string>
+    <string name="email_hint">Vui lòng nhập email</string>
     <string name="quenMatKhau"><u>Quên mật khẩu?</u></string>
     <string name="trangChu_nav">Trang Chủ</string>
     <string name="hangHoa_nav">Hàng hóa</string>

@@ -39,7 +39,6 @@ public class MenuActivity extends AppCompatActivity {
         txtQuenMK.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(view.getContext(), "Quên mật khẩu tài khoản!", Toast.LENGTH_SHORT).show(); //hiện thông báo chuyển trang
                 Intent intent = new Intent(MenuActivity.this,ForgotPassword.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(intent);
