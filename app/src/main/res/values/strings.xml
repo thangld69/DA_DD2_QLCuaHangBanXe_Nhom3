@@ -1,5 +1,10 @@
 <resources>
+    <string name="app_name1">ManageCar</string>
     <string name="app_name">Nhom3ManageCar</string>
+    <string name="dangNhap">Đăng Nhập</string>
+    <string name="dangKy">Đăng Ký</string>
+    <string name="quenMatKhau"><u>Quên mật khẩu?</u></string>
+    <string name="trangChu_nav">Trang Chủ</string>
     <string name="hangHoa_nav">Hàng hóa</string>
     <string name="kiemKho_nav">Kiểm kho</string>
     <string name="nhapHang_nav">Nhập hàng</string>
@@ -8,4 +13,7 @@
     <string name="lienHe_nav">Liên hệ</string>
     <string name="dangXuat_nav">Đăng xuất</string>
     <string name="thoat_nav">Thoát</string>
+    <string name="drawer_open_nav">Open navigation drawer</string>
+    <string name="drawer_close_nav">Close navigation drawer</string>
+
 </resources>

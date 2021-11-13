@@ -45,18 +45,19 @@ public class LoginActivity  extends AppCompatActivity {
         String email = username.getText().toString();
         String  pass = inputPass.getText().toString();
         if(email.isEmpty()){
-            Toast.makeText(getApplicationContext(), "Vui long nhap Email", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Vui lòng nhập Email", Toast.LENGTH_SHORT).show();
         }else if(pass.isEmpty()){
-            Toast.makeText(getApplicationContext(), "Vui long nhap PassWord", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Vui lòng nhập PassWord", Toast.LENGTH_SHORT).show();
         }
-        mAuth.signInWithEmailAndPassword(email,pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+        mAuth.signInWithEmailAndPassword(email,pass).addOnCompleteListener(LoginActivity.this,new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
-                    Toast.makeText(getApplicationContext(), "Dang nhap thanh cong", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                    //startActivity(new Intent(LoginActivity.this,MainActivity.class));
                 }else {
-                    Toast.makeText(getApplicationContext(), "Dang nhap that bai", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Đăng nhập thất bại", Toast.LENGTH_SHORT).show();
                 }
             }
         });
