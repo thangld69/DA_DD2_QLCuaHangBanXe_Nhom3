@@ -15,7 +15,28 @@
     <string name="lienHe_nav">Liên hệ</string>
     <string name="dangXuat_nav">Đăng xuất</string>
     <string name="thoat_nav">Thoát</string>
+    <string name="sdt">Số điện thoại</string>
+
+    <string name="tim_kiem">Nhập vào sản phẩm cần tìm</string>
     <string name="drawer_open_nav">Open navigation drawer</string>
     <string name="drawer_close_nav">Close navigation drawer</string>
+    //them san pham
+    <string name="Save">Lưu</string>
+    <string name="Back">Trở lại</string>
+    <string name="themHangHoa">Thêm hàng hóa</string>
+    <string name="choose_from_gallery">Chọn hình trong máy</string>
+    <string name="open_camera">Chụp hình</string>
+    <string name="maHang">Mã hàng</string>
+    <string name="tenHang">Tên hàng</string>
+    <string name="nhomHang">Nhóm hàng &#xf0da;</string>
+    <string name="giaBan">Giá bán</string>
+    <string name="giaVon">Giá vốn</string>
+    <string name="tonKho">Tồn kho</string>
+    //tra cuu bao hanh
+    <string name="traCuu">Tra cứu</string>
+
+
+    //font awersome
+    <string name="fa_caret_right">&#xf0da;</string>
 
 </resources>

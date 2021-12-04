@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/anhnen_6"
+    android:orientation="vertical"
+    tools:context=".ThemSanPhamActivity">
+
+    <include
+        android:id="@+id/include_toolbar_nutrition_list"
+        layout="@layout/toolbar_them_hang_hoa"></include>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="11"
+        android:orientation="vertical"
+        android:padding="5dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="5dp"
+            android:layout_weight="5"
+            android:background="@drawable/dangnhap_dangky_background"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:gravity="center">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="130dp"
+                        android:layout_height="130dp"
+                        app:cardCornerRadius="35dp">
+
+                        <ImageView
+                            android:id="@+id/imgAccChange"
+                            android:layout_width="130dp"
+                            android:layout_height="130dp"
+                            android:scaleType="centerCrop"
+                            android:src="@mipmap/anh_trang" />
+                    </androidx.cardview.widget.CardView>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <Button
+                        android:id="@+id/btnChooseFromGallery"
+                        android:layout_width="160dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:backgroundTint="@color/buttonCam"
+                        android:text="@string/choose_from_gallery"
+                        android:textAllCaps="false"
+                        android:textSize="11sp" />
+
+                    <Button
+                        android:id="@+id/btnOpenCamera"
+                        android:layout_width="160dp"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/buttonCam"
+                        android:text="@string/open_camera"
+                        android:textAllCaps="false"
+                        android:textSize="11sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/maHang"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/edtMaHang"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:singleLine="true"
+                android:textStyle="bold"></EditText>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tenHang"
+                android:textSize="20dp"
+                android:textStyle="bold"></TextView>
+
+            <EditText
+                android:id="@+id/edtTenHang"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:singleLine="true"
+                android:textStyle="bold"></EditText>
+
+            <TextView
+                android:id="@+id/tvNhomHang"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/nhomHang"
+                android:textSize="20dp"
+                android:textStyle="bold"></TextView>
+
+            <EditText
+                android:id="@+id/edtNhomHang"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:singleLine="true"
+                android:textStyle="bold"></EditText>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/giaBan"
+                android:textSize="20dp"
+                android:textStyle="bold"></TextView>
+
+            <EditText
+                android:id="@+id/edtGiaBan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:singleLine="true"
+                android:inputType="number"
+                android:textStyle="bold"></EditText>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/giaVon"
+                android:textSize="20dp"
+                android:textStyle="bold"></TextView>
+
+            <EditText
+                android:id="@+id/edtGiaVon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:inputType="number"
+                android:singleLine="true"
+                android:textStyle="bold"></EditText>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tonKho"
+                android:textSize="20dp"
+                android:textStyle="bold"></TextView>
+
+            <EditText
+                android:id="@+id/edtTonKho"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:inputType="number"
+                android:singleLine="true"
+                android:textStyle="bold"></EditText>
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnSave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/buttonCam"
+            android:text="@string/Save"
+            android:textSize="12sp"></Button>
+
+    </LinearLayout>
+</LinearLayout>

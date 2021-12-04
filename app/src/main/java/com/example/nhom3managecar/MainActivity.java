@@ -134,9 +134,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             builder.setPositiveButton("Có", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
-                    finish();
-                    System.exit(0);
-                    //onBackPressed();
+                    //finish();
+                    //System.exit(0);
+                    onBackPressed();
                 }
             });
             builder.setNegativeButton("Không", new DialogInterface.OnClickListener() {
