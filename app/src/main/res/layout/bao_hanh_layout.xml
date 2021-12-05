@@ -6,13 +6,9 @@
     android:orientation="vertical"
     android:padding="10dp">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="@string/baohanh_nav"
-        android:textStyle="bold"
-        android:textSize="24sp" />
+    <include
+        android:id="@+id/include_toolbar_nutrition_list"
+        layout="@layout/toolbar_bao_hanh"></include>
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -32,8 +32,20 @@
     <string name="giaBan">Giá bán</string>
     <string name="giaVon">Giá vốn</string>
     <string name="tonKho">Tồn kho</string>
+    //nhap hang
+    <string name="tenNhaCungCap">Tên nhà cung cấp</string>
+    <string name="donGia">Đơn giá</string>
+    <string name="soLuong">Số lượng</string>
+    //xuat hang
+    <string name="tenKhachHang">Tên khách hàng</string>
+    <string name="ngayXuat">Ngày xuất</string>
+    <string name="hintChonNgayXuat">Chọn ngày xuất</string>
+    <string name="hintChonNgayHetBh">Chọn ngày hết bảo hành</string>
+    <string name="ngayHetHanBh">Ngày hết hạn bảo hành</string>
+    <string name="chonNgay">Chọn ngày</string>
     //tra cuu bao hanh
     <string name="traCuu">Tra cứu</string>
+
 
 
     //font awersome

@@ -51,7 +51,7 @@ public class ThemSanPhamActivity extends AppCompatActivity {
 
     private void setControl() {
         imgAccChange = (ImageView) findViewById(R.id.imgAccChange);
-        imageButtonBackSpace = (ImageButton) findViewById(R.id.icon_backspace_them_hang_hoa);
+        imageButtonBackSpace = (ImageButton) findViewById(R.id.icon_backspace_kiem_kho);
         btnChooseFromGallery = (Button) findViewById(R.id.btnChooseFromGallery);
         btnOpenCamera = (Button) findViewById(R.id.btnOpenCamera);
         btnSave = (Button) findViewById(R.id.btnSave);

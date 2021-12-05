@@ -1,13 +1,154 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:orientation="vertical"
     android:layout_height="match_parent"
-    android:background="@color/design_default_color_on_primary">
+    android:background="@mipmap/anhnen_6"
+    android:orientation="vertical"
+    tools:context=".ThemSanPhamActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="40sp"
-        android:text="@string/nhapHang_nav"/>
+    <include
+        android:id="@+id/include_toolbar_nutrition_list"
+        layout="@layout/toolbar_nhap_hang"></include>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="11"
+        android:orientation="vertical"
+        android:padding="5dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="5dp"
+            android:layout_weight="5"
+            android:background="@drawable/dangnhap_dangky_background"
+            android:orientation="vertical"
+            android:padding="10dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tenNhaCungCap"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/edtTenNhaCungCap"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:singleLine="true"
+                android:textStyle="bold"></EditText>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/sdt"
+                android:textSize="20dp"
+                android:textStyle="bold"></TextView>
+
+            <EditText
+                android:id="@+id/edtSdt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:singleLine="true"
+                android:textStyle="bold"></EditText>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/maHang"
+                android:textSize="20dp"
+                android:textStyle="bold"></TextView>
+
+            <EditText
+                android:id="@+id/edtMaHang"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:singleLine="true"
+                android:textStyle="bold"></EditText>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tenHang"
+                android:textSize="20dp"
+                android:textStyle="bold"></TextView>
+
+            <EditText
+                android:id="@+id/edtTenHang"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:singleLine="true"
+                android:textStyle="bold"></EditText>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/nhomHang"
+                android:textSize="20dp"
+                android:textStyle="bold"></TextView>
+
+            <EditText
+                android:id="@+id/edtNhomHang"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:singleLine="true"
+                android:textStyle="bold"></EditText>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/soLuong"
+                android:textSize="20dp"
+                android:textStyle="bold"></TextView>
+
+            <EditText
+                android:id="@+id/edtSoLuong"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:inputType="number"
+                android:singleLine="true"
+                android:textStyle="bold"></EditText>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/donGia"
+                android:textSize="20dp"
+                android:textStyle="bold"></TextView>
+
+            <EditText
+                android:id="@+id/edtDonGia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:inputType="number"
+                android:singleLine="true"
+                android:textStyle="bold"></EditText>
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnSave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/buttonCam"
+            android:text="@string/Save"
+            android:textSize="12sp"></Button>
+
+    </LinearLayout>
 </LinearLayout>

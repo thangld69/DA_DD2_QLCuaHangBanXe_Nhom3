@@ -10,6 +10,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/none"
+            android:visibility="invisible"
             android:src="@drawable/ic_keyboard_backspace">
 
         </ImageButton>
@@ -21,7 +22,7 @@
             android:layout_toLeftOf="@id/icon_more_nutrition_list"
             android:layout_toEndOf="@id/icon_backspace_kiem_kho"
             android:layout_toRightOf="@id/icon_backspace_kiem_kho"
-            android:text="@string/themHangHoa"
+            android:text="@string/nhapHang_nav"
             android:textSize="25sp">
 
         </TextView>
