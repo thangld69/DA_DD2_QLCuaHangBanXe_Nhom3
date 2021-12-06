@@ -1,5 +1,7 @@
 package com.example.nhom3managecar;
 
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -11,6 +13,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -23,16 +26,19 @@ public class LoginActivity  extends AppCompatActivity {
     private EditText username,inputPass;
     private Button login;
     private FirebaseAuth mAuth;
+    ProgressDialog progressDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getSupportActionBar().hide();
         setContentView(R.layout.login_activity);
         mAuth = FirebaseAuth.getInstance();
-
+        progressDialog = new ProgressDialog(this);
         username = findViewById(R.id.edtUsername);
         inputPass = findViewById(R.id.edtPass);
         login = findViewById(R.id.btnLogin);
-
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -41,25 +47,54 @@ public class LoginActivity  extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onBackPressed() {
+        //neu drawer da dong thi thoat app
+        progressDialog.dismiss();
+        Intent intent = new Intent(this,RegisterActivity.class);
+        startActivity(intent);
+        super.onBackPressed();
+    }
+
     private void Login() {
         String email = username.getText().toString();
         String  pass = inputPass.getText().toString();
         if(email.isEmpty()){
-            Toast.makeText(getApplicationContext(), "Vui lòng nhập Email", Toast.LENGTH_SHORT).show();
+            username.setError("Bạn chưa nhập Email!");
         }else if(pass.isEmpty()){
-            Toast.makeText(getApplicationContext(), "Vui lòng nhập PassWord", Toast.LENGTH_SHORT).show();
-        }
-        mAuth.signInWithEmailAndPassword(email,pass).addOnCompleteListener(LoginActivity.this,new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()){
-                    Toast.makeText(getApplicationContext(), "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(getApplicationContext(),MainActivity.class));
-                    //startActivity(new Intent(LoginActivity.this,MainActivity.class));
-                }else {
-                    Toast.makeText(getApplicationContext(), "Đăng nhập thất bại", Toast.LENGTH_SHORT).show();
+            inputPass.setError("Bạn chưa nhập password!");
+        }else {
+            progressDialog.setMessage("Vui lòng đợi...");
+            progressDialog.setTitle("Thông Báo");
+            progressDialog.setCanceledOnTouchOutside(false);
+            progressDialog.show();
+            mAuth.signInWithEmailAndPassword(email,pass).addOnCompleteListener(LoginActivity.this,new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if(task.isSuccessful()){
+                        progressDialog.setMessage("Đăng nhập thành công");
+                        progressDialog.setTitle("Thông Báo");
+                        progressDialog.setCanceledOnTouchOutside(false);
+                        progressDialog.show();
+                        startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                    }else {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);//android.R.style.Theme_DeviceDefault
+                        builder.setTitle("Đăng nhập thất bại");
+                        builder.setMessage("Vui lòng kiểm tra lại email và password");
+                        builder.setIcon(R.drawable.ic_question_answer);
+                        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                inputPass.setText("");
+                                username.requestFocus();
+                                progressDialog.dismiss();
+                            }
+                        });
+                        builder.show();
+                    }
                 }
-            }
-        });
+            });
+        }
+
     }
 }

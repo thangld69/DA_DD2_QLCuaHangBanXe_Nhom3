@@ -34,8 +34,9 @@
     <string name="tonKho">Tồn kho</string>
     //nhap hang
     <string name="tenNhaCungCap">Tên nhà cung cấp</string>
-    <string name="donGia">Đơn giá</string>
+    <string name="donGia">Giá bán</string>
     <string name="soLuong">Số lượng</string>
+    <string name="timKiem">Nhập vào tên xe...</string>
     //xuat hang
     <string name="tenKhachHang">Tên khách hàng</string>
     <string name="ngayXuat">Ngày xuất</string>
@@ -43,8 +44,13 @@
     <string name="hintChonNgayHetBh">Chọn ngày hết bảo hành</string>
     <string name="ngayHetHanBh">Ngày hết hạn bảo hành</string>
     <string name="chonNgay">Chọn ngày</string>
+    <string name="hinhAnh">Hình ảnh</string>
+    <string name="update">Cập nhật</string>
+    <string name="updateSP">Cập nhật sản phẩm</string>
+    <string name="chiTietSp">Chi tiết sản phẩm</string>
     //tra cuu bao hanh
     <string name="traCuu">Tra cứu</string>
+    <string name="capNhatSl">Cập nhật số lượng</string>
 
 
 

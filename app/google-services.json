@@ -1,34 +1,34 @@
 {
   "project_info": {
-    "project_number": "328065698883",
-    "firebase_url": "https://managecar-6d7b2-default-rtdb.firebaseio.com",
-    "project_id": "managecar-6d7b2",
-    "storage_bucket": "managecar-6d7b2.appspot.com"
+    "project_number": "8089850665",
+    "firebase_url": "https://nhom3-quanlyxe-default-rtdb.firebaseio.com",
+    "project_id": "nhom3-quanlyxe",
+    "storage_bucket": "nhom3-quanlyxe.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:328065698883:android:18c2c4780c8337b9ee18f6",
+        "mobilesdk_app_id": "1:8089850665:android:79ce979e4c3c7ffdd2dd38",
         "android_client_info": {
-          "package_name": "com.example.nhom3managecar"
+          "package_name": "com.example.quanlycuahangxe"
         }
       },
       "oauth_client": [
         {
-          "client_id": "328065698883-13uj0sdba1c50s9jq2ns4qrp8fdfcihc.apps.googleusercontent.com",
+          "client_id": "8089850665-v4vkfhgtnos5k3ubmftsaj0pufqobphl.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyA4voUbRuFLu4ssTpQXGwzQsHeqs3HN_vU"
+          "current_key": "AIzaSyBk2G8ad8qRE9qBpWJa7-agk61S_Wqt620"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "328065698883-13uj0sdba1c50s9jq2ns4qrp8fdfcihc.apps.googleusercontent.com",
+              "client_id": "8089850665-v4vkfhgtnos5k3ubmftsaj0pufqobphl.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

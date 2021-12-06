@@ -6,7 +6,7 @@
     <RelativeLayout style="@style/rl_toolbar_basic">
 
         <ImageButton
-            android:id="@+id/icon_backspace_kiem_kho"
+            android:id="@+id/icon_backspace_trangchu"
             android:layout_width="15dp"
             android:layout_height="14dp"
             android:background="@color/none"
@@ -20,8 +20,8 @@
             style="@style/title_toolbar"
             android:layout_toStartOf="@id/icon_more_nutrition_list"
             android:layout_toLeftOf="@id/icon_more_nutrition_list"
-            android:layout_toEndOf="@id/icon_backspace_kiem_kho"
-            android:layout_toRightOf="@id/icon_backspace_kiem_kho"
+            android:layout_toEndOf="@id/icon_backspace_trangchu"
+            android:layout_toRightOf="@id/icon_backspace_trangchu"
             android:text="@string/xuatHang_nav"
             android:textSize="25sp">
 

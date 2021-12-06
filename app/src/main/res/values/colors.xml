@@ -10,5 +10,8 @@
     <color name="white">#FFFFFFFF</color>
     <color name="none">#00ffffff</color>
     <color name="buttonCam">#FF9800</color>
+    <color name="startblue">#09c6df</color>
+    <color name="endblue">#03A9F4</color>
     <color name="color_border_toolbar">#CFCFCF</color>
+
 </resources>

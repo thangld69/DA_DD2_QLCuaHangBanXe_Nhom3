@@ -11,17 +11,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Nhom3ManageCar">
-        <activity android:name=".ThemSanPhamActivity"></activity>
         <activity android:name=".ForgotPassword" />
-        <activity
-            android:name=".ViewActivity"
-            android:exported="true" />
-        <activity
-            android:name=".ManagerCarActivity"
-            android:exported="true" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true">
+
 
         </activity>
         <activity
@@ -39,9 +34,6 @@
             android:exported="true" />
         <activity
             android:name=".RegisterActivity"
-            android:exported="true" />
-        <activity
-            android:name=".ListCarActivity"
             android:exported="true" />
     </application>
 </manifest>

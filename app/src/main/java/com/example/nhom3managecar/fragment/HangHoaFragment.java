@@ -1,50 +1,87 @@
 package com.example.nhom3managecar.fragment;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.nhom3managecar.ForgotPassword;
+import com.example.nhom3managecar.MainAdapter;
+import com.example.nhom3managecar.data_models.ModelCar;
 import com.example.nhom3managecar.R;
-import com.example.nhom3managecar.ThemSanPhamActivity;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class HangHoaFragment extends Fragment {
-    ImageButton btnThemSp;
     View view;
+    RecyclerView recyclerView;
+    MainAdapter adapter;
+    EditText search;
+
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        view = inflater.inflate(R.layout.activity_car_main,container,false);
 
-        view = inflater.inflate(R.layout.hang_hoa_layout,container,false);
-        setControl();
-        setEvent();
+        recyclerView = view.findViewById(R.id.recycler_view);
+        search = view.findViewById(R.id.searchCar);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+
+        txtSearch("");
+        search.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if(s.toString()!=null){
+                    txtSearch(s.toString());
+                }else {
+                    txtSearch("");
+                }
+            }
+        });
+
         return view;
     }
 
-    private void setEvent() {
-    btnThemSp.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            Intent intent = new Intent(getActivity(), ThemSanPhamActivity.class);
-            startActivity(intent);
-        }
-    });
+    @Override
+    public void onStart() {
+        super.onStart();
+        adapter.startListening();
     }
 
-    private void setControl() {
-    btnThemSp = view.findViewById(R.id.btnThemSp);
+    @Override
+    public void onStop() {
+        super.onStop();
+        adapter.stopListening();
     }
+
+    private void txtSearch(String str){
+        FirebaseRecyclerOptions<ModelCar> options =
+                new FirebaseRecyclerOptions.Builder<ModelCar>()
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("car").orderByChild("tenXe").startAt(str).endAt(str + "~"), ModelCar.class)
+                        .build();
+        adapter = new MainAdapter(options);
+        adapter.startListening();
+        recyclerView.setAdapter(adapter);
+    }
+
 }

@@ -11,6 +11,9 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.app.ProgressDialog;
+import android.view.Window;
+
 
 import com.example.nhom3managecar.data_models.Permission;
 
@@ -37,8 +40,8 @@ import com.google.android.material.navigation.NavigationView;
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private DrawerLayout drawerLayout;
     Toolbar toolbar;
-    private LinearLayout manageCar;
-    private Button logout;
+    ProgressDialog progressDialog;
+
 
     //gan man hinh mac dinh la main_layout
     private int mCurrentFragment = Permission.FRAGMENT_TRANGCHU;
@@ -46,12 +49,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getSupportActionBar().hide();
         setContentView(R.layout.activity_main);
-        // manageCar = findViewById(R.id.managerCar);
-        // logout = findViewById(R.id.buttonLogout);
+        progressDialog = new ProgressDialog(this);
         toolbar = (Toolbar) findViewById(R.id.toolBar);
         toolbar.setTitle(getString(R.string.app_name1));
-        setSupportActionBar(toolbar);
+        //setSupportActionBar(toolbar);
         drawerLayout = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar,
                 R.string.drawer_open_nav, R.string.drawer_close_nav);
@@ -60,21 +64,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //bat su kien click tai nav
         NavigationView navigationView = findViewById(R.id.navigation_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-
-//        logout.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                startActivity(new Intent(getApplicationContext(),LoginActivity.class));
-//            }
-//        });
-//
-//        manageCar.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                startActivity(new Intent(getApplicationContext(),ListCarActivity.class));
-//            }
-//        });
         replaceFragment(new TrangChuFragment());
         navigationView.getMenu().findItem(R.id.nav_trangChu).setChecked(true);
 
@@ -134,9 +123,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             builder.setPositiveButton("Có", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
-                    //finish();
-                    //System.exit(0);
-                    onBackPressed();
+                    finish();
+                    System.exit(0);
                 }
             });
             builder.setNegativeButton("Không", new DialogInterface.OnClickListener() {
@@ -157,9 +145,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //neu drawer da dong thi thoat app
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START);
+            progressDialog.dismiss();
         } else {
-            super.onBackPressed();
 
+//            progressDialog.dismiss();
+//            Intent intent = new Intent(this,MainActivity.class);
+//            startActivity(intent);
+//            super.onBackPressed();
         }
     }
 

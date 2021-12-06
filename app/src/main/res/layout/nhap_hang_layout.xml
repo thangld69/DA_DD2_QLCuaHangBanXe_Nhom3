@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@mipmap/anhnen_6"
-    android:orientation="vertical"
-    tools:context=".ThemSanPhamActivity">
+    android:orientation="vertical">
 
     <include
         android:id="@+id/include_toolbar_nutrition_list"
@@ -27,35 +26,6 @@
             android:background="@drawable/dangnhap_dangky_background"
             android:orientation="vertical"
             android:padding="10dp">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/tenNhaCungCap"
-                android:textSize="20dp"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/edtTenNhaCungCap"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:singleLine="true"
-                android:textStyle="bold"></EditText>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/sdt"
-                android:textSize="20dp"
-                android:textStyle="bold"></TextView>
-
-            <EditText
-                android:id="@+id/edtSdt"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:singleLine="true"
-                android:textStyle="bold"></EditText>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -65,7 +35,7 @@
                 android:textStyle="bold"></TextView>
 
             <EditText
-                android:id="@+id/edtMaHang"
+                android:id="@+id/txtAddMaXe"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
@@ -80,7 +50,7 @@
                 android:textStyle="bold"></TextView>
 
             <EditText
-                android:id="@+id/edtTenHang"
+                android:id="@+id/txtAddTenXe"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
@@ -95,7 +65,7 @@
                 android:textStyle="bold"></TextView>
 
             <EditText
-                android:id="@+id/edtNhomHang"
+                android:id="@+id/txtAddNhomXe"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
@@ -105,12 +75,12 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/soLuong"
+                android:text="@string/giaBan"
                 android:textSize="20dp"
                 android:textStyle="bold"></TextView>
 
             <EditText
-                android:id="@+id/edtSoLuong"
+                android:id="@+id/txtAddGiaBan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
@@ -120,16 +90,45 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/donGia"
+                android:text="giá vốn"
                 android:textSize="20dp"
                 android:textStyle="bold"></TextView>
 
             <EditText
-                android:id="@+id/edtDonGia"
+                android:id="@+id/txtAddGiaVon"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
                 android:inputType="number"
+                android:singleLine="true"
+                android:textStyle="bold"></EditText>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tồn kho"
+                android:textSize="20dp"
+                android:textStyle="bold"></TextView>
+
+            <EditText
+                android:id="@+id/txtAddTonKho"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:inputType="number"
+                android:singleLine="true"
+                android:textStyle="bold"></EditText>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Thêm ảnh"
+                android:textSize="20dp"
+                android:textStyle="bold"></TextView>
+
+            <EditText
+                android:id="@+id/txtAddImage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
                 android:singleLine="true"
                 android:textStyle="bold"></EditText>
         </LinearLayout>
@@ -143,12 +142,14 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/btnSave"
+            android:id="@+id/btnAdd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/buttonCam"
             android:text="@string/Save"
-            android:textSize="12sp"></Button>
+            android:focusable="true"
+            android:background="@drawable/button_base"
+            style="@style/button_main_item"
+            ></Button>
 
     </LinearLayout>
 </LinearLayout>

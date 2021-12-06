@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -15,12 +16,17 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 public class RegisterActivity extends AppCompatActivity {
     private EditText inputUsername,inputPass,inputRepass;
     private Button register;
     ProgressDialog progressDialog;
+    private DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+    private StorageReference storageReference = FirebaseStorage.getInstance().getReference();
 
     private FirebaseAuth mAuth;
 
@@ -28,9 +34,11 @@ public class RegisterActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getSupportActionBar().hide();
         setContentView(R.layout.register_activity);
 
-        inputUsername = findViewById(R.id.edtReName);
+        inputUsername = findViewById(R.id.edtEmail);
         inputPass = findViewById(R.id.edtRePass);
         inputRepass = findViewById(R.id.edtReCreatPass);
         register = findViewById(R.id.btnRegister);
@@ -48,20 +56,26 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
+
+
     private void Register() {
         String email = inputUsername.getText().toString();
         String  pass = inputPass.getText().toString();
         String repass = inputRepass.getText().toString();
 
         if(email.isEmpty()){
-            Toast.makeText(getApplicationContext(), "Vui long nhap Email!", Toast.LENGTH_SHORT).show();
-        }else  if(pass.isEmpty() || repass.length() < 6){
-            Toast.makeText(getApplicationContext(), "Vui long nhap hon 6 ky tu!", Toast.LENGTH_SHORT).show();
-        }else  if(!pass.equals(repass)){
-            Toast.makeText(getApplicationContext(), "Vui long nhap dung Password!", Toast.LENGTH_SHORT).show();
+            inputUsername.setError("Bạn chưa nhập Email!");
+        }else  if(pass.isEmpty()) {
+            inputPass.setError("Bạn chưa nhập mật khẩu!");
+        }else  if(pass.length()<6) {
+            inputPass.setError("Mật khẩu phải ít nhất 6 kí tự!");
+        }else if(repass.isEmpty()){//kiểm tra password confrim có nhập hay chưa
+            inputRepass.setError("Bạn chưa xác nhận mật khẩu!");
+        }else if(!pass.equals(repass)){//kiểm tra password == password confirm ?
+            inputRepass.setError("Mật khâu xác nhận không chính xác!");
         }else {
-            progressDialog.setMessage("Vui long doi...");
-            progressDialog.setTitle("Doi");
+            progressDialog.setMessage("Vui lòng đợi...");
+            progressDialog.setTitle("Thông Báo");
             progressDialog.setCanceledOnTouchOutside(false);
             progressDialog.show();
 
@@ -69,16 +83,21 @@ public class RegisterActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if(task.isSuccessful()){
-                        progressDialog.dismiss();
+                        progressDialog.setMessage("Đăng ký thành công");
+                        progressDialog.setTitle("Thông Báo");
+                        progressDialog.setCanceledOnTouchOutside(false);
+                        progressDialog.show();
                         Intent intent = new Intent(RegisterActivity.this,LoginActivity.class);
                         startActivity(intent);
-                        Toast.makeText(getApplicationContext(), "Dang ky thanh cong!", Toast.LENGTH_SHORT).show();
+
                     }else {
                         progressDialog.dismiss();
                         Toast.makeText(getApplicationContext(), "" + task.getException(), Toast.LENGTH_SHORT).show();
                     }
                 }
             });
+
+
         }
     }
 }

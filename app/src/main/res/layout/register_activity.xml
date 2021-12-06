@@ -41,7 +41,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtReName"
+        app:layout_constraintTop_toBottomOf="@+id/edtEmail"
         />
 
     <ImageView
@@ -91,7 +91,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
     <EditText
-        android:id="@+id/edtReName"
+        android:id="@+id/edtEmail"
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:layout_marginStart="50dp"
@@ -116,6 +116,7 @@
         android:layout_marginStart="50dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="50dp"
+        style="@style/button_main_item"
         android:background="@drawable/btn_backgroup"
         android:text="@string/dangKy"
         app:layout_constraintEnd_toEndOf="parent"

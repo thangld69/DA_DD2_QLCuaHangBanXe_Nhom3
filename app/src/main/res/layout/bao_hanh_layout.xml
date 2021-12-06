@@ -37,9 +37,11 @@
             android:id="@+id/btnTraCuu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/buttonCam"
+            android:focusable="true"
+            android:background="@drawable/button_base"
+            style="@style/button_main_item"
             android:text="@string/traCuu"
-            android:textSize="12sp"></Button>
+            ></Button>
 
     </LinearLayout>
 
