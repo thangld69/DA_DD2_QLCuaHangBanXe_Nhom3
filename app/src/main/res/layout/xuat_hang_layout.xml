@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@mipmap/anhnen_6"
     android:orientation="vertical"
-    tools:context=".ThemSanPhamActivity">
+    >
 
     <include
         android:id="@+id/include_toolbar_nutrition_list"
