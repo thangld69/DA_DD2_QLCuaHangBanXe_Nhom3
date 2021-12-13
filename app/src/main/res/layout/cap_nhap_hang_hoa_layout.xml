@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/anhnen_6"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/include_toolbar_nutrition_list"
+        layout="@layout/toolbar_cap_nhat_san_pham"></include>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="11"
+        android:orientation="vertical"
+        android:padding="5dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="5dp"
+            android:layout_weight="5"
+            android:background="@drawable/dangnhap_dangky_background"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/maHang"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/txtUpdateMaXe"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:singleLine="true"
+                android:textStyle="bold"></EditText>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tenHang"
+                android:textSize="20dp"
+                android:textStyle="bold"></TextView>
+
+            <EditText
+                android:id="@+id/txtUpdateTenXe"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:singleLine="true"
+                android:textStyle="bold"></EditText>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/nhomHang"
+                android:textSize="20dp"
+                android:textStyle="bold"></TextView>
+
+            <EditText
+                android:id="@+id/txtUpdateNhomHang"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:singleLine="true"
+                android:textStyle="bold"></EditText>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/donGia"
+                android:textSize="20dp"
+                android:textStyle="bold"></TextView>
+
+            <EditText
+                android:id="@+id/txtUpdateGiaBan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:inputType="number"
+                android:singleLine="true"
+                android:textStyle="bold"></EditText>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/giaVon"
+                android:textSize="20dp"
+                android:textStyle="bold"></TextView>
+
+            <EditText
+                android:id="@+id/txtUpdateGiaVon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:inputType="number"
+                android:singleLine="true"
+                android:textStyle="bold"></EditText>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tonKho"
+                android:textSize="20dp"
+                android:textStyle="bold"></TextView>
+
+            <EditText
+                android:id="@+id/txtUpdateTonKho"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:inputType="number"
+                android:singleLine="true"
+                android:textStyle="bold"></EditText>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/hinhAnh"
+                android:textSize="20dp"
+                android:textStyle="bold"></TextView>
+
+            <EditText
+                android:id="@+id/txtUpdateImage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:inputType="number"
+                android:singleLine="true"
+                android:visibility="gone"
+                android:textStyle="bold"></EditText>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="16dp"
+                android:layout_weight="15"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2">
+
+                    <ImageView
+                        android:id="@+id/imgHinhXe"
+                        android:layout_width="130dp"
+                        android:layout_height="130dp"
+                        android:scaleType="centerCrop"
+                        android:src="@mipmap/anh_trang" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <Button
+                        android:id="@+id/btnChooseFromGallery"
+                        style="@style/button_main_item"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:backgroundTint="#FF6E40"
+                        android:text="@string/choose_from_gallery"
+                        android:textAllCaps="false" />
+
+                    <Button
+                        android:id="@+id/btnOpenCamera"
+                        style="@style/button_main_item"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="#FF6E40"
+                        android:text="@string/open_camera"
+                        android:textAllCaps="false" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnUpdate"
+            style="@style/button_main_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_base"
+            android:focusable="true"
+            android:text="@string/update"></Button>
+
+    </LinearLayout>
+</LinearLayout>
