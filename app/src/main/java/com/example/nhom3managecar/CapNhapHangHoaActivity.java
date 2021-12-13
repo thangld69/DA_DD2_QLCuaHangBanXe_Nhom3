@@ -41,6 +41,10 @@ public class CapNhapHangHoaActivity extends AppCompatActivity {
     private int CAMERA_IMAGE = 123, cameraChoose = 0;
     FirebaseStorage storage = FirebaseStorage.getInstance();
 
+    //cai nay cua MainAdapter,chỗ btnEdit
+   // Intent intent = new Intent(v.getContext(),CapNhapHangHoaActivity.class);
+//                v.getContext().startActivity(intent);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
