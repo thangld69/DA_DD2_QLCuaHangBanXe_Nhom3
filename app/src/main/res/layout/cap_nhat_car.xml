@@ -26,6 +26,7 @@
             android:background="@drawable/dangnhap_dangky_background"
             android:orientation="vertical"
             android:padding="10dp">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -99,8 +100,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
-                android:singleLine="true"
                 android:inputType="number"
+                android:singleLine="true"
                 android:textStyle="bold"></EditText>
 
             <TextView
@@ -118,6 +119,7 @@
                 android:inputType="number"
                 android:singleLine="true"
                 android:textStyle="bold"></EditText>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -132,7 +134,56 @@
                 android:layout_marginBottom="20dp"
                 android:inputType="number"
                 android:singleLine="true"
+                android:visibility="gone"
                 android:textStyle="bold"></EditText>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="16dp"
+                android:layout_weight="15"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2">
+
+                    <ImageView
+                        android:id="@+id/imgHinhXe"
+                        android:layout_width="130dp"
+                        android:layout_height="130dp"
+                        android:scaleType="centerCrop"
+                        android:src="@mipmap/anh_trang" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <Button
+                        android:id="@+id/btnChooseFromGallery"
+                        style="@style/button_main_item"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:backgroundTint="#FF6E40"
+                        android:text="@string/choose_from_gallery"
+                        android:textAllCaps="false" />
+
+                    <Button
+                        android:id="@+id/btnOpenCamera"
+                        style="@style/button_main_item"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="#FF6E40"
+                        android:text="@string/open_camera"
+                        android:textAllCaps="false" />
+                </LinearLayout>
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 
@@ -145,13 +196,12 @@
 
         <Button
             android:id="@+id/btnUpdate"
+            style="@style/button_main_item"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/update"
-            android:focusable="true"
             android:background="@drawable/button_base"
-            style="@style/button_main_item"
-            ></Button>
+            android:focusable="true"
+            android:text="@string/update"></Button>
 
     </LinearLayout>
 </LinearLayout>

@@ -6,11 +6,11 @@
     <RelativeLayout style="@style/rl_toolbar_basic">
 
         <ImageButton
-            android:id="@+id/icon_backspace_trangchu"
+            android:id="@+id/icon_backspace_cap_nhat_sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/none"
-            android:visibility="invisible"
+            android:visibility="visible"
             android:src="@drawable/ic_keyboard_backspace">
 
         </ImageButton>
@@ -20,8 +20,8 @@
             style="@style/title_toolbar"
             android:layout_toStartOf="@id/icon_more_nutrition_list"
             android:layout_toLeftOf="@id/icon_more_nutrition_list"
-            android:layout_toEndOf="@id/icon_backspace_trangchu"
-            android:layout_toRightOf="@id/icon_backspace_trangchu"
+            android:layout_toEndOf="@id/icon_backspace_cap_nhat_sp"
+            android:layout_toRightOf="@id/icon_backspace_cap_nhat_sp"
             android:text="@string/updateSP"
             android:textSize="25sp">
 

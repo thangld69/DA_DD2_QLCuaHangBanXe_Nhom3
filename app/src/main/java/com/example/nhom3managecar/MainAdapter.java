@@ -4,6 +4,10 @@ package com.example.nhom3managecar;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -31,13 +36,21 @@ import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
+import static android.app.Activity.RESULT_OK;
+
+
 public class MainAdapter extends FirebaseRecyclerAdapter<ModelCar,MainAdapter.myViewHolder> {
+
     /**
      * Initialize a {@link RecyclerView.Adapter} that listens to a Firebase query. See
      * {@link FirebaseRecyclerOptions} for configuration options.
      *
      * @param options
      */
+    private int PICK_IMAGE = 123, galleryChoose = 0;
+    private int CAMERA_IMAGE = 123, cameraChoose = 0;
+    private ImageView imgHinhXe;
+    private Button btnChooseFromGallery, btnOpenCamera;
 
     public MainAdapter(@NonNull FirebaseRecyclerOptions<ModelCar> options) {
         super(options);
@@ -62,7 +75,6 @@ public class MainAdapter extends FirebaseRecyclerAdapter<ModelCar,MainAdapter.my
                         .setContentHolder(new ViewHolder(R.layout.activity_chi_tiet))
                         .setExpanded(true,1700)
                         .create();
-
                 View view = dialogPlus.getHolderView();
                 EditText maXe = view.findViewById(R.id.txtCTMaXe);
                 EditText tenXe = view.findViewById(R.id.txtCTTenXe);
@@ -90,66 +102,126 @@ public class MainAdapter extends FirebaseRecyclerAdapter<ModelCar,MainAdapter.my
         holder.btnEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final DialogPlus dialogPlus = DialogPlus.newDialog(holder.imgCar.getContext())
-                        .setContentHolder(new ViewHolder(R.layout.cap_nhat_car))
-                        .setExpanded(true,1700)
-                        .create();
+                String maXe = model.getMaXe();
+                String tenXe = model.getTenXe();
+                String nhomHang = model.getNhomXe();
+                String giaBan = model.getGiaBan();
+                String giaVon = model.getGiaVon();
+                String tonKho = model.getTonKho();
+                String turl = model.getTurl();
 
-                View view = dialogPlus.getHolderView();
+                Intent intent = new Intent(v.getContext(),CapNhatHangActivity.class);
+                intent.putExtra("maXe",maXe);
+                intent.putExtra("tenXe",tenXe);
+                intent.putExtra("nhomHang",nhomHang);
+                intent.putExtra("giaBan",giaBan);
+                intent.putExtra("giaVon",giaVon);
+                intent.putExtra("tonKho",tonKho);
+                intent.putExtra("turl",turl);
 
-                EditText maXe = view.findViewById(R.id.txtUpdateMaXe);
-                EditText tenXe = view.findViewById(R.id.txtUpdateTenXe);
-                EditText nhomHang = view.findViewById(R.id.txtUpdateNhomHang);
-                EditText giaBan = view.findViewById(R.id.txtUpdateGiaBan);
-                EditText giaVon = view.findViewById(R.id.txtUpdateGiaVon);
-                EditText tonKho = view.findViewById(R.id.txtUpdateTonKho);
-                EditText imageUrl  = view.findViewById(R.id.txtUpdateImage);
-
-                Button btnUpdate = view.findViewById(R.id.btnUpdate);
-
-                maXe.setText(model.getMaXe());
-                tenXe.setText(model.getTenXe());
-                nhomHang.setText(model.getNhomXe());
-                giaBan.setText(model.getGiaBan());
-                giaVon.setText(model.getGiaVon());
-                tonKho.setText(model.getTonKho());
-                imageUrl.setText(model.getTurl());
-
-                dialogPlus.show();
-
-                btnUpdate.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Map<String,Object> map  = new HashMap<>();
-
-                        map.put("maXe",maXe.getText().toString());
-                        map.put("tenXe",tenXe.getText().toString());
-                        map.put("nhomXe",nhomHang.getText().toString());
-                        map.put("giaBan",giaBan.getText().toString());
-                        map.put("giaVon",giaVon.getText().toString());
-                        map.put("tonKho",tonKho.getText().toString());
-                        map.put("turl",imageUrl.getText().toString());
-
-                        FirebaseDatabase.getInstance().getReference().child("car")
-                                .child(getRef(position).getKey()).updateChildren(map)
-                                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                    @Override
-                                    public void onSuccess(Void unused) {
-                                        Toast.makeText(holder.maxe.getContext(), "Update Success", Toast.LENGTH_SHORT).show();
-                                        dialogPlus.dismiss();
-                                    }
-                                }).addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(holder.maxe.getContext(), "Update Failed", Toast.LENGTH_SHORT).show();
-                                dialogPlus.dismiss();
-                            }
-                        });
-                    }
-                });
+                v.getContext().startActivity(intent);
+//                final DialogPlus dialogPlus = DialogPlus.newDialog(holder.imgCar.getContext())
+//                        .setContentHolder(new ViewHolder(R.layout.cap_nhat_car))
+//                        .setExpanded(true,1700)
+//                        .create();
+//
+//                View view = dialogPlus.getHolderView();
+//
+//                EditText maXe = view.findViewById(R.id.txtUpdateMaXe);
+//                EditText tenXe = view.findViewById(R.id.txtUpdateTenXe);
+//                EditText nhomHang = view.findViewById(R.id.txtUpdateNhomHang);
+//                EditText giaBan = view.findViewById(R.id.txtUpdateGiaBan);
+//                EditText giaVon = view.findViewById(R.id.txtUpdateGiaVon);
+//                EditText tonKho = view.findViewById(R.id.txtUpdateTonKho);
+//                EditText imageUrl  = view.findViewById(R.id.txtUpdateImage);
+//                Button btnUpdate = view.findViewById(R.id.btnUpdate);
+//                Button btnChooseFromGallery = view.findViewById(R.id.btnChooseFromGallery);
+//                Button btnOpenCamera = view.findViewById(R.id.btnOpenCamera);
+//
+//                ///
+//
+//
+//                //imgHinhXe = (ImageView) v.findViewById(R.id.imgHinhXe);
+////                btnChooseFromGallery = (Button) v.findViewById(R.id.btnChooseFromGallery);
+////                btnOpenCamera = (Button) v.findViewById(R.id.btnOpenCamera);
+//
+//                maXe.setText(model.getMaXe());
+//                tenXe.setText(model.getTenXe());
+//                nhomHang.setText(model.getNhomXe());
+//                giaBan.setText(model.getGiaBan());
+//                giaVon.setText(model.getGiaVon());
+//                tonKho.setText(model.getTonKho());
+//                //imageUrl.setText(model.getTurl());
+//
+//                dialogPlus.show();
+//                btnChooseFromGallery.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View view) {
+////                        String clms;
+////                        Log.d("tet","clm");
+//                        PICK_IMAGE = 1;
+//                        galleryChoose++;
+//                        Intent gallery = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.INTERNAL_CONTENT_URI);
+//                        v.getContext().startActivity(gallery);
+//                    }
+//                });
+//                btnOpenCamera.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View view) {
+//                        CAMERA_IMAGE = 2;
+//                        cameraChoose++;
+//                        Intent camera = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+//                        v.getContext().startActivity(camera);
+//
+////                        PICK_IMAGE = 1;
+////                        galleryChoose++;
+////                        Intent gallery = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.INTERNAL_CONTENT_URI);
+////                        v.getContext().startActivity(gallery);
+//                    }
+//                });
+//
+//
+//
+//                btnUpdate.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//
+//
+//
+//                        Map<String,Object> map  = new HashMap<>();
+//
+//                        map.put("maXe",maXe.getText().toString());
+//                        map.put("tenXe",tenXe.getText().toString());
+//                        map.put("nhomXe",nhomHang.getText().toString());
+//                        map.put("giaBan",giaBan.getText().toString());
+//                        map.put("giaVon",giaVon.getText().toString());
+//                        map.put("tonKho",tonKho.getText().toString());
+//                        map.put("turl",imageUrl.getText().toString());
+//
+//                        FirebaseDatabase.getInstance().getReference().child("car")
+//                                .child(getRef(position).getKey()).updateChildren(map)
+//                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+//                                    @Override
+//                                    public void onSuccess(Void unused) {
+//                                        Toast.makeText(holder.maxe.getContext(), "Update Success", Toast.LENGTH_SHORT).show();
+//                                        dialogPlus.dismiss();
+//                                    }
+//                                }).addOnFailureListener(new OnFailureListener() {
+//                            @Override
+//                            public void onFailure(@NonNull Exception e) {
+//                                Toast.makeText(holder.maxe.getContext(), "Update Failed", Toast.LENGTH_SHORT).show();
+//                                dialogPlus.dismiss();
+//                            }
+//                        });
+//                    }
+//                });
+                //
 
             }
+
+
         });
+
         holder.btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -173,6 +245,9 @@ public class MainAdapter extends FirebaseRecyclerAdapter<ModelCar,MainAdapter.my
             }
         });
     }
+
+
+
 
     @NonNull
     @Override
@@ -209,6 +284,11 @@ public class MainAdapter extends FirebaseRecyclerAdapter<ModelCar,MainAdapter.my
             btnEdit = itemView.findViewById(R.id.btnEdit);
             btnDelete = itemView.findViewById(R.id.btnDelete);
             btnUpdateKho = itemView.findViewById(R.id.btnUpdateKho);
+
         }
+
     }
+
+
+
 }

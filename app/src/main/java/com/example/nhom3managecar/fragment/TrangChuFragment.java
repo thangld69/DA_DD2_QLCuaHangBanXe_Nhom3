@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -28,15 +29,20 @@ public class TrangChuFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.trang_chu_layout, container, false);
-        recyclerView = view.findViewById(R.id.rvHome);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        FirebaseRecyclerOptions<ModelCar> options =
-                new FirebaseRecyclerOptions.Builder<ModelCar>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("car"), ModelCar.class)
-                        .build();
+        try {
+            recyclerView = view.findViewById(R.id.rvHome);
+            recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+            FirebaseRecyclerOptions<ModelCar> options =
+                    new FirebaseRecyclerOptions.Builder<ModelCar>()
+                            .setQuery(FirebaseDatabase.getInstance().getReference().child("car"), ModelCar.class)
+                            .build();
 
-        adapter = new HomeAdapter(options);
-        recyclerView.setAdapter(adapter);
+            adapter = new HomeAdapter(options);
+            recyclerView.setAdapter(adapter);
+        }catch (Exception e){
+            Toast.makeText(getContext(), "clm"+e, Toast.LENGTH_SHORT).show();
+        }
+
         return view;
 
     }
