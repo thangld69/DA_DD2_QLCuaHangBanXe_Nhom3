@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Nhom3ManageCar">
-        <activity android:name=".CapNhatHangActivity"></activity>
+        <activity android:name=".XuatHangActivity"></activity>
+        <activity android:name=".CapNhatHangActivity" />
         <activity android:name=".ForgotPassword" />
         <activity
             android:name=".MainActivity"

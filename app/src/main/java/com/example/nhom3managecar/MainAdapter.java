@@ -83,6 +83,7 @@ public class MainAdapter extends FirebaseRecyclerAdapter<ModelCar,MainAdapter.my
                 EditText giaVon = view.findViewById(R.id.txtCTGiaVon);
                 EditText tonKho = view.findViewById(R.id.txtCTTonKho);
                 ImageView imageCT = view.findViewById(R.id.imageCTCar);
+                Button btnXuat = view.findViewById(R.id.btnXuatHang);
 
                 maXe.setText(model.getMaXe());
                 tenXe.setText(model.getTenXe());
@@ -96,7 +97,31 @@ public class MainAdapter extends FirebaseRecyclerAdapter<ModelCar,MainAdapter.my
                         .into(imageCT);
 
                 dialogPlus.show();
+                btnXuat.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        String maXe = model.getMaXe();
+                        String tenXe = model.getTenXe();
+                        String nhomHang = model.getNhomXe();
+                        String giaBan = model.getGiaBan();
+                        String giaVon = model.getGiaVon();
+                        String tonKho = model.getTonKho();
+                        String turl = model.getTurl();
+
+                        Intent intent = new Intent(v.getContext(),XuatHangActivity.class);
+                        intent.putExtra("maXe",maXe);
+                        intent.putExtra("tenXe",tenXe);
+                        intent.putExtra("nhomHang",nhomHang);
+                        intent.putExtra("giaBan",giaBan);
+                        intent.putExtra("giaVon",giaVon);
+                        intent.putExtra("tonKho",tonKho);
+                        intent.putExtra("turl",turl);
+
+                        v.getContext().startActivity(intent);
+                    }
+                });
             }
+
         });
 
         holder.btnEdit.setOnClickListener(new View.OnClickListener() {
