@@ -77,7 +77,7 @@
             <Button
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Edit"
+                android:text="Sửa"
                 android:textAllCaps="false"
                 android:layout_marginRight="5dp"
                 android:id="@+id/btnEdit"
@@ -88,7 +88,7 @@
             <Button
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Delete"
+                android:text="Xóa"
                 android:textAllCaps="false"
                 android:layout_marginLeft="5dp"
                 android:id="@+id/btnDelete"

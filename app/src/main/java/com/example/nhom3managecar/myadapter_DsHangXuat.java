@@ -1,15 +1,20 @@
 package com.example.nhom3managecar;
 
 
+import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,9 +23,16 @@ import com.bumptech.glide.Glide;
 import com.example.nhom3managecar.data_models.model;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.FirebaseDatabase;
 import com.orhanobut.dialogplus.DialogPlus;
 import com.orhanobut.dialogplus.ViewHolder;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -29,7 +41,15 @@ public class myadapter_DsHangXuat extends FirebaseRecyclerAdapter<model, myadapt
     public myadapter_DsHangXuat(@NonNull FirebaseRecyclerOptions<model> options) {
         super(options);
     }
+    private Button btnChonNgay, btnChonNgayHetBh,btnXuat;
+    private EditText edtNgayXuat, edtNgayHenBh, edtQuantity;
+    private int mYear, mMonth, mDay;
+    private TextView txtSoLuongSP;
+    private Button btnDecs, btnInc;
+    private int soLuongSP;
+    View views;
 
+    private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
     @Override
     protected void onBindViewHolder(@NonNull myviewholder holder, int position, @NonNull model model) {
 
@@ -56,6 +76,8 @@ public class myadapter_DsHangXuat extends FirebaseRecyclerAdapter<model, myadapt
                 EditText giaBan = view.findViewById(R.id.edtDonGia);
                 EditText ngayXuat = view.findViewById(R.id.edtNgayXuat);
                 EditText ngayHetBh = view.findViewById(R.id.edtNgayHetBh);
+                edtQuantity = (EditText) view.findViewById(R.id.edtQuantity);
+
 
                 tenKh.setText(model.getTenKh());
                 sdt.setText(model.getSdt());
@@ -69,6 +91,205 @@ public class myadapter_DsHangXuat extends FirebaseRecyclerAdapter<model, myadapt
 
                 dialogPlus.show();
             }
+        });
+        holder.btnEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                String maXe = model.getMaXe();
+//                String tenXe = model.getTenXe();
+//                String nhomHang = model.getNhomXe();
+//                String giaBan = model.getGiaBan();
+//                String giaVon = model.getGiaVon();
+//                String tonKho = model.getTonKho();
+//                String turl = model.getTurl();
+//
+//                Intent intent = new Intent(v.getContext(),CapNhatHangActivity.class);
+//                intent.putExtra("maXe",maXe);
+//                intent.putExtra("tenXe",tenXe);
+//                intent.putExtra("nhomHang",nhomHang);
+//                intent.putExtra("giaBan",giaBan);
+//                intent.putExtra("giaVon",giaVon);
+//                intent.putExtra("tonKho",tonKho);
+//                intent.putExtra("turl",turl);
+//
+//                v.getContext().startActivity(intent);
+                final DialogPlus dialogPlus = DialogPlus.newDialog(holder.dsTenKh.getContext())
+                        .setContentHolder(new ViewHolder(R.layout.cap_nhat_ds_hang_xuat))
+                        .setExpanded(true,1700)
+                        .create();
+
+                View view = dialogPlus.getHolderView();
+
+                EditText tenKh = view.findViewById(R.id.edtTenKhachHang);
+                EditText sdt = view.findViewById(R.id.edtSdt);
+                EditText maXe = view.findViewById(R.id.edtMaHang);
+                EditText tenXe = view.findViewById(R.id.edtTenHang);
+                EditText nhomHang = view.findViewById(R.id.edtNhomHang);
+                EditText soLuong = view.findViewById(R.id.edtQuantity);
+                EditText giaBan = view.findViewById(R.id.edtDonGia);
+                EditText ngayXuat = view.findViewById(R.id.edtNgayXuat);
+                EditText ngayHetBh = view.findViewById(R.id.edtNgayHetBh);
+                btnChonNgayHetBh = view.findViewById(R.id.btnChonNgayHetBh);
+                btnChonNgay = (Button) view.findViewById(R.id.btnChonNgayXuat);
+                edtQuantity = (EditText) view.findViewById(R.id.edtQuantity);
+                btnDecs = view.findViewById(R.id.btnDecs);
+                btnInc = view.findViewById(R.id.btnInc);
+
+
+                tenKh.setText(model.getTenKh());
+                sdt.setText(model.getSdt());
+                maXe.setText(model.getMaXe());
+                tenXe.setText(model.getTenXe());
+                nhomHang.setText(model.getNhomHang());
+                soLuong.setText(model.getSoLuong());
+                giaBan.setText(model.getGiaBan());
+                ngayXuat.setText(model.getNgayXuat());
+                ngayHetBh.setText(model.getNgayHetBh());
+                dialogPlus.show();
+                String giaNe = giaBan.getText().toString();
+                int gia = Integer.parseInt(giaNe);
+//                btnChooseFromGallery.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View view) {
+////                        String clms;
+////                        Log.d("tet","clm");
+//                        PICK_IMAGE = 1;
+//                        galleryChoose++;
+//                        Intent gallery = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.INTERNAL_CONTENT_URI);
+//                        v.getContext().startActivity(gallery);
+//                    }
+//                });
+//                btnOpenCamera.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View view) {
+//                        CAMERA_IMAGE = 2;
+//                        cameraChoose++;
+//                        Intent camera = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+//                        v.getContext().startActivity(camera);
+//
+////                        PICK_IMAGE = 1;
+////                        galleryChoose++;
+////                        Intent gallery = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.INTERNAL_CONTENT_URI);
+////                        v.getContext().startActivity(gallery);
+//                    }
+//                });
+                btnChonNgay.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        // Get Current Date
+                        final Calendar c = Calendar.getInstance();
+                        mYear = c.get(Calendar.YEAR);
+                        mMonth = c.get(Calendar.MONTH);
+                        mDay = c.get(Calendar.DAY_OF_MONTH);
+
+                        DatePickerDialog datePickerDialog = new DatePickerDialog(view.getContext(),
+                                new DatePickerDialog.OnDateSetListener() {
+
+                                    @Override
+                                    public void onDateSet(DatePicker view, int year,
+                                                          int monthOfYear, int dayOfMonth) {
+
+                                        edtNgayXuat.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+
+                                    }
+                                }, mYear, mMonth, mDay);
+                        datePickerDialog.show();
+                    }
+
+                });
+                btnChonNgayHetBh.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        // Get Current Date
+                        final Calendar c = Calendar.getInstance();
+                        mYear = c.get(Calendar.YEAR);
+                        mMonth = c.get(Calendar.MONTH);
+                        mDay = c.get(Calendar.DAY_OF_MONTH);
+
+                        DatePickerDialog datePickerDialog = new DatePickerDialog(view.getContext(),
+                                new DatePickerDialog.OnDateSetListener() {
+
+                                    @Override
+                                    public void onDateSet(DatePicker view, int year,
+                                                          int monthOfYear, int dayOfMonth) {
+
+                                        edtNgayHenBh.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+
+                                    }
+                                }, mYear, mMonth, mDay);
+                        datePickerDialog.show();
+                    }
+
+                });
+                btnDecs.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        if (Integer.valueOf(edtQuantity.getText().toString()) > 1) {
+                            int newNum = Integer.valueOf(edtQuantity.getText().toString()) - 1;
+                            edtQuantity.setText(String.valueOf(newNum));
+                            int iNum2 = Integer.valueOf(giaBan.getText().toString());
+                            int iTong = Integer.valueOf(iNum2-gia);
+                            giaBan.setText(String.valueOf(iTong));
+                        }
+                    }
+
+                });
+
+                btnInc.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        if (Integer.valueOf(edtQuantity.getText().toString()) > 0) {
+                            int newNum = Integer.valueOf(edtQuantity.getText().toString()) + 1;
+                            edtQuantity.setText(String.valueOf(newNum));
+                            int iTong = Integer.valueOf(gia * newNum);
+                            giaBan.setText(String.valueOf(iTong));
+                        }
+                    }
+
+                });
+
+
+
+//                btnUpdate.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//
+//
+//
+//                        Map<String,Object> map  = new HashMap<>();
+//
+//                        map.put("maXe",maXe.getText().toString());
+//                        map.put("tenXe",tenXe.getText().toString());
+//                        map.put("nhomXe",nhomHang.getText().toString());
+//                        map.put("giaBan",giaBan.getText().toString());
+//                        map.put("giaVon",giaVon.getText().toString());
+//                        map.put("tonKho",tonKho.getText().toString());
+//                        //map.put("turl",imageUrl.getText().toString());
+//
+//                        FirebaseDatabase.getInstance().getReference().child("car")
+//                                .child(getRef(position).getKey()).updateChildren(map)
+//                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+//                                    @Override
+//                                    public void onSuccess(Void unused) {
+//                                        Toast.makeText(holder.maxe.getContext(), "Update Success", Toast.LENGTH_SHORT).show();
+//                                        dialogPlus.dismiss();
+//                                    }
+//                                }).addOnFailureListener(new OnFailureListener() {
+//                            @Override
+//                            public void onFailure(@NonNull Exception e) {
+//                                Toast.makeText(holder.maxe.getContext(), "Update Failed", Toast.LENGTH_SHORT).show();
+//                                dialogPlus.dismiss();
+//                            }
+//                        });
+//                    }
+//                });
+                //
+
+            }
+
+
         });
         holder.btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
