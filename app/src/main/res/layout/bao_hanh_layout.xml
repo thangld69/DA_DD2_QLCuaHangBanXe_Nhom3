@@ -22,26 +22,29 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/sdt"
+            android:visibility="gone"
             android:textColor="@color/white" />
 
         <EditText
-            android:id="@+id/edtTonKho"
+            android:id="@+id/searchCar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
             android:layout_marginBottom="20dp"
-            android:inputType="number"
-            android:singleLine="true"
-            android:textStyle="bold"></EditText>
+            android:background="@drawable/input_search"
+            android:drawableLeft="@drawable/ic_baseline_search_24"
+            android:hint="Nhập vào số điện thoại..."
+            android:padding="10dp"
+            android:textColor="@color/white"
+            android:textSize="20dp" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <Button
-            android:id="@+id/btnTraCuu"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:focusable="true"
-            android:background="@drawable/button_base"
-            style="@style/button_main_item"
-            android:text="@string/traCuu"
-            ></Button>
+        </androidx.recyclerview.widget.RecyclerView>
 
     </LinearLayout>
 
