@@ -133,7 +133,17 @@
                 android:layout_height="100dp"
                 android:src="@mipmap/ic_launcher"
                 android:layout_gravity="center"/>
+            <Button
+                android:id="@+id/btnXuatHang"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:focusable="true"
+                android:layout_gravity="center"
+                android:background="@drawable/button_base"
+                style="@style/button_main_item"
 
+                android:text="Xuất Hàng" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,15 +29,16 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-public class XuatHangFragment extends Fragment {
+public class XuatHangFragment extends Fragment implements ValueEventListener {
     private View view;
-    private DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+    private DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("car");
     private StorageReference storageReference = FirebaseStorage.getInstance().getReference();
     FirebaseStorage storage = FirebaseStorage.getInstance();
     private  Intent intent ;
@@ -138,5 +140,17 @@ public class XuatHangFragment extends Fragment {
         edtNgayHenBh = (EditText)view.findViewById(R.id.edtNgayHetBh);
         btnChonNgay = (Button)view.findViewById(R.id.btnChonNgayXuat);
         btnChonNgayHetBh = (Button)view.findViewById(R.id.btnChonNgayHetBh);
+        databaseReference.addValueEventListener(this);
+    }
+
+    @Override
+    public void onDataChange(@NonNull DataSnapshot snapshot) {
+        //databaseReference.child(snapshot.getValue(ModelCar.class).getMaXe());
+        //Log.d("kt",databaseReference.child(snapshot.getValue(ModelCar.class).getMaXe()).toString());
+    }
+
+    @Override
+    public void onCancelled(@NonNull DatabaseError error) {
+
     }
 }
