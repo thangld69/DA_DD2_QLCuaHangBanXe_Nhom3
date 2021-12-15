@@ -116,7 +116,43 @@
                 android:layout_marginBottom="20dp"
                 android:inputType="number"
                 android:singleLine="true"
+                android:visibility="gone"
                 android:textStyle="bold"></EditText>
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+                <Button
+                    android:id="@+id/btnDecs"
+                    android:layout_width="40dp"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="#FF6E40"
+                    android:text="-"/>
+                <EditText
+                    android:id="@+id/edtQuantity"
+                    android:layout_width="90dp"
+                    android:layout_height="wrap_content"
+                    android:text="1"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:inputType="number"/>
+                <Button
+                    android:id="@+id/btnInc"
+                    android:layout_width="40dp"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="#FF6E40"
+                    android:text="+"
+                    android:layout_marginRight="5dp"/>
+                <TextView
+                    android:id="@+id/txtSoLuongSP"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/product_quantity"
+                    android:textSize="15sp"/>
+            </LinearLayout>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -161,6 +197,7 @@
                     android:backgroundTint="#FF6E40"
                     android:text="@string/chonNgay"
                     android:textAllCaps="false"
+                    style="@style/button_main_item"
                     android:textSize="11sp" />
             </LinearLayout>
             <TextView
@@ -192,6 +229,7 @@
                     android:backgroundTint="#FF6E40"
                     android:text="@string/chonNgay"
                     android:textAllCaps="false"
+                    style="@style/button_main_item"
                     android:textSize="11sp" />
             </LinearLayout>
 
@@ -209,6 +247,7 @@
             android:id="@+id/btnSave"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="@style/button_main_item"
             android:backgroundTint="@color/buttonCam"
             android:text="@string/Save"
             android:textSize="12sp"></Button>

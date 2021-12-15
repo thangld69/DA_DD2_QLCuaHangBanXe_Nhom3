@@ -56,4 +56,6 @@
     //font awersome
     <string name="fa_caret_right">&#xf0da;</string>
 
+    <string name="product_quantity">Số lượng: 10</string>
+
 </resources>

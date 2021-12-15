@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,8 +22,12 @@ import java.util.Calendar;
 public class XuatHangFragment extends Fragment {
     private View view;
     private Button btnChonNgay,btnChonNgayHetBh;
-    private EditText edtNgayXuat,edtNgayHenBh;
+
+    private EditText edtNgayXuat,edtNgayHenBh,edtQuantity;
     private int mYear, mMonth, mDay;
+    private TextView txtSoLuongSP;
+    private Button btnDecs, btnInc;
+    private int soLuongSP;
     private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
     @Nullable
     @Override
@@ -34,6 +39,29 @@ public class XuatHangFragment extends Fragment {
     }
 
     private void setEvent() {
+        btnDecs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(soLuongSP > 0){
+                    if(Integer.valueOf(edtQuantity.getText().toString()) > 1){
+                        int newNum = Integer.valueOf(edtQuantity.getText().toString()) - 1;
+                        edtQuantity.setText(String.valueOf(newNum));
+                    }
+                }
+            }
+        });
+        btnInc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(soLuongSP > 0){
+                    if(Integer.valueOf(edtQuantity.getText().toString()) < soLuongSP){
+                        int newNum = Integer.valueOf(edtQuantity.getText().toString()) + 1;
+                        edtQuantity.setText(String.valueOf(newNum));
+                    }
+                }
+            }
+        });
+
         btnChonNgay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -85,6 +113,8 @@ public class XuatHangFragment extends Fragment {
     }
 
     private void setControl() {
+        btnDecs = (Button) view.findViewById(R.id.btnDecs);
+        btnInc = (Button) view.findViewById(R.id.btnInc);
         edtNgayXuat = (EditText)view.findViewById(R.id.edtNgayXuat);
         edtNgayHenBh = (EditText)view.findViewById(R.id.edtNgayHetBh);
         btnChonNgay = (Button)view.findViewById(R.id.btnChonNgayXuat);
