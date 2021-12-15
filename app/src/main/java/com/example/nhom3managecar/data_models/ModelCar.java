@@ -1,5 +1,8 @@
 package com.example.nhom3managecar.data_models;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class ModelCar {
     String maXe,tenXe,nhomXe,giaBan,giaVon,tonKho;
 
@@ -16,6 +19,10 @@ public class ModelCar {
         this.giaVon = giaVon;
         this.tonKho = tonKho;
         this.turl = turl;
+    }
+
+    public ModelCar(String maXe) {
+        this.maXe = maXe;
     }
 
     public String getMaXe() {
@@ -73,4 +80,18 @@ public class ModelCar {
     public void setTurl(String turl) {
         this.turl = turl;
     }
+
+
+    public Map<String, Object> toMap() {
+        HashMap<String, Object> result = new HashMap<>();
+        result.put("maXe", maXe);
+//        result.put("author", author);
+//        result.put("title", title);
+//        result.put("body", body);
+//        result.put("starCount", starCount);
+//        result.put("stars", stars);
+
+        return result;
+    }
+
 }
