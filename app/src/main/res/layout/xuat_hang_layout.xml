@@ -4,253 +4,34 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/anhnen_6"
     android:orientation="vertical"
+    android:padding="10dp"
+    android:background="@mipmap/nen_app"
     >
-
     <include
         android:id="@+id/include_toolbar_nutrition_list"
         layout="@layout/toolbar_xuat_hang"></include>
 
-    <ScrollView
+
+    <EditText
+        android:id="@+id/searchCar"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="11"
-        android:orientation="vertical"
-        android:padding="5dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginTop="5dp"
-            android:layout_weight="5"
-            android:background="@drawable/dangnhap_dangky_background"
-            android:orientation="vertical"
-            android:padding="10dp">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/tenKhachHang"
-                android:textSize="20dp"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/edtTenKhachHang"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:singleLine="true"
-                android:textStyle="bold"></EditText>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/sdt"
-                android:textSize="20dp"
-                android:textStyle="bold"></TextView>
-
-            <EditText
-                android:id="@+id/edtSdt"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:singleLine="true"
-                android:textStyle="bold"></EditText>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/maHang"
-                android:textSize="20dp"
-                android:textStyle="bold"></TextView>
-
-            <EditText
-                android:id="@+id/edtMaHang"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:singleLine="true"
-                android:textStyle="bold"></EditText>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/tenHang"
-                android:textSize="20dp"
-                android:textStyle="bold"></TextView>
-
-            <EditText
-                android:id="@+id/edtTenHang"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:singleLine="true"
-                android:textStyle="bold"></EditText>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/nhomHang"
-                android:textSize="20dp"
-                android:textStyle="bold"></TextView>
-
-            <EditText
-                android:id="@+id/edtNhomHang"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:singleLine="true"
-                android:textStyle="bold"></EditText>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/soLuong"
-                android:textSize="20dp"
-                android:textStyle="bold"></TextView>
-
-            <EditText
-                android:id="@+id/edtSoLuong"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:inputType="number"
-                android:singleLine="true"
-                android:visibility="gone"
-                android:textStyle="bold"></EditText>
-            <LinearLayout
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:orientation="horizontal">
-                <Button
-                    android:id="@+id/btnDecs"
-                    android:layout_width="40dp"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="#FF6E40"
-                    android:text="-"/>
-                <EditText
-                    android:id="@+id/edtQuantity"
-                    android:layout_width="90dp"
-                    android:layout_height="wrap_content"
-                    android:text="1"
-                    android:layout_marginRight="5dp"
-                    android:layout_marginLeft="5dp"
-                    android:inputType="number"/>
-                <Button
-                    android:id="@+id/btnInc"
-                    android:layout_width="40dp"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="#FF6E40"
-                    android:text="+"
-                    android:layout_marginRight="5dp"/>
-                <TextView
-                    android:id="@+id/txtSoLuongSP"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/product_quantity"
-                    android:textSize="15sp"/>
-            </LinearLayout>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/donGia"
-                android:textSize="20dp"
-                android:textStyle="bold"></TextView>
-
-            <EditText
-                android:id="@+id/edtDonGia"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:inputType="number"
-                android:singleLine="true"
-                android:textStyle="bold"></EditText>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/ngayXuat"
-                android:textSize="20dp"
-                android:textStyle="bold"></TextView>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:orientation="horizontal">
-
-                <EditText
-                    android:id="@+id/edtNgayXuat"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="30dp"
-                    android:editable="false"
-                    android:hint="@string/hintChonNgayXuat"
-                    android:singleLine="true" />
-
-                <Button
-                    android:id="@+id/btnChonNgayXuat"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="#FF6E40"
-                    android:text="@string/chonNgay"
-                    android:textAllCaps="false"
-                    style="@style/button_main_item"
-                    android:textSize="11sp" />
-            </LinearLayout>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/ngayHetHanBh"
-                android:textSize="20dp"
-                android:textStyle="bold"></TextView>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:orientation="horizontal">
-
-                <EditText
-                    android:id="@+id/edtNgayHetBh"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="30dp"
-                    android:editable="false"
-                    android:hint="@string/hintChonNgayHetBh"
-                    android:singleLine="true" />
-
-                <Button
-                    android:id="@+id/btnChonNgayHetBh"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="#FF6E40"
-                    android:text="@string/chonNgay"
-                    android:textAllCaps="false"
-                    style="@style/button_main_item"
-                    android:textSize="11sp" />
-            </LinearLayout>
-
-        </LinearLayout>
-    </ScrollView>
-
-    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/input_search"
+        android:drawableLeft="@drawable/ic_baseline_search_24"
+        android:hint="@string/timKiem"
+        android:padding="10dp"
+        android:textColor="@color/white"
+        android:textSize="20dp" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:orientation="horizontal">
+        android:layout_height="match_parent">
 
-        <Button
-            android:id="@+id/btnSave"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/button_main_item"
-            android:backgroundTint="@color/buttonCam"
-            android:text="@string/Save"
-            android:textSize="12sp"></Button>
+    </androidx.recyclerview.widget.RecyclerView>
 
-    </LinearLayout>
 </LinearLayout>

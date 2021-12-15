@@ -4,6 +4,8 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,11 +19,18 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.nhom3managecar.CapNhatHangActivity;
+import com.example.nhom3managecar.MainAdapter;
 import com.example.nhom3managecar.R;
 import com.example.nhom3managecar.data_models.ModelCar;
+import com.example.nhom3managecar.data_models.model;
+import com.example.nhom3managecar.myadapter;
+import com.example.nhom3managecar.myadapter_DsHangXuat;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.ChildEventListener;
@@ -36,121 +45,62 @@ import com.google.firebase.storage.StorageReference;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-public class XuatHangFragment extends Fragment implements ValueEventListener {
-    private View view;
-    private DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("car");
-    private StorageReference storageReference = FirebaseStorage.getInstance().getReference();
-    FirebaseStorage storage = FirebaseStorage.getInstance();
-    private  Intent intent ;
-    private Button btnChonNgay,btnChonNgayHetBh;
-    EditText maXe, tenXe, nhomHang, giaBan, giaVon, tonKho;
-    private EditText edtNgayXuat,edtNgayHenBh,edtQuantity;
-    private int mYear, mMonth, mDay;
-    private TextView txtSoLuongSP;
-    private Button btnDecs, btnInc;
-    private int soLuongSP;
-    private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+public class XuatHangFragment extends Fragment{
+
+    View view;
+    RecyclerView recyclerView;
+    myadapter_DsHangXuat adapter;
+    EditText search;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.xuat_hang_layout,container,false);
-        setControl();
-        setEvent();
+        recyclerView = view.findViewById(R.id.recycler_view);
+        search = view.findViewById(R.id.searchCar);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        txtSearch("");
+        search.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if(s.toString()!=null){
+                    txtSearch(s.toString());
+                }else {
+                    txtSearch("");
+                }
+            }
+        });
+
         return view;
     }
 
-    private void setEvent() {
-        btnDecs.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(soLuongSP > 0){
-                    if(Integer.valueOf(edtQuantity.getText().toString()) > 1){
-                        int newNum = Integer.valueOf(edtQuantity.getText().toString()) - 1;
-                        edtQuantity.setText(String.valueOf(newNum));
-                    }
-                }
-            }
-        });
-        btnInc.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(soLuongSP > 0){
-                    if(Integer.valueOf(edtQuantity.getText().toString()) < soLuongSP){
-                        int newNum = Integer.valueOf(edtQuantity.getText().toString()) + 1;
-                        edtQuantity.setText(String.valueOf(newNum));
-                    }
-                }
-            }
-        });
-
-        btnChonNgay.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Get Current Date
-                final Calendar c = Calendar.getInstance();
-                mYear = c.get(Calendar.YEAR);
-                mMonth = c.get(Calendar.MONTH);
-                mDay = c.get(Calendar.DAY_OF_MONTH);
-
-                DatePickerDialog datePickerDialog = new DatePickerDialog(view.getContext(),
-                        new DatePickerDialog.OnDateSetListener() {
-
-                            @Override
-                            public void onDateSet(DatePicker view, int year,
-                                                  int monthOfYear, int dayOfMonth) {
-
-                                edtNgayXuat.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
-
-                            }
-                        }, mYear, mMonth, mDay);
-                datePickerDialog.show();
-            }
-
-        });
-        btnChonNgayHetBh.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Get Current Date
-                final Calendar c = Calendar.getInstance();
-                mYear = c.get(Calendar.YEAR);
-                mMonth = c.get(Calendar.MONTH);
-                mDay = c.get(Calendar.DAY_OF_MONTH);
-
-                DatePickerDialog datePickerDialog = new DatePickerDialog(view.getContext(),
-                        new DatePickerDialog.OnDateSetListener() {
-
-                            @Override
-                            public void onDateSet(DatePicker view, int year,
-                                                  int monthOfYear, int dayOfMonth) {
-
-                                edtNgayHenBh.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
-
-                            }
-                        }, mYear, mMonth, mDay);
-                datePickerDialog.show();
-            }
-
-        });
+    private void txtSearch(String str){
+        FirebaseRecyclerOptions<model> options =
+                new FirebaseRecyclerOptions.Builder<model>()
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("hang_xuat").orderByChild("tenXe").startAt(str).endAt(str + "~"), model.class)
+                        .build();
+        adapter = new myadapter_DsHangXuat(options);
+        adapter.startListening();
+        recyclerView.setAdapter(adapter);
     }
-
-    private void setControl() {
-        btnDecs = (Button) view.findViewById(R.id.btnDecs);
-        btnInc = (Button) view.findViewById(R.id.btnInc);
-        edtNgayXuat = (EditText)view.findViewById(R.id.edtNgayXuat);
-        edtNgayHenBh = (EditText)view.findViewById(R.id.edtNgayHetBh);
-        btnChonNgay = (Button)view.findViewById(R.id.btnChonNgayXuat);
-        btnChonNgayHetBh = (Button)view.findViewById(R.id.btnChonNgayHetBh);
-        databaseReference.addValueEventListener(this);
+    @Override
+    public void onStart() {
+        super.onStart();
+        adapter.startListening();
     }
 
     @Override
-    public void onDataChange(@NonNull DataSnapshot snapshot) {
-        //databaseReference.child(snapshot.getValue(ModelCar.class).getMaXe());
-        //Log.d("kt",databaseReference.child(snapshot.getValue(ModelCar.class).getMaXe()).toString());
-    }
-
-    @Override
-    public void onCancelled(@NonNull DatabaseError error) {
-
+    public void onStop() {
+        super.onStop();
+        adapter.stopListening();
     }
 }

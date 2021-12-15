@@ -22,7 +22,7 @@
             android:icon="@drawable/ic_nhap_hang_nav"/>
         <item
             android:id="@+id/nav_xuatHang"
-            android:title="@string/xuatHang_nav"
+            android:title="DS hàng xuất"
             android:icon="@drawable/ic_xuat_hang_nav"/>
         <item
             android:id="@+id/nav_baoHanh"

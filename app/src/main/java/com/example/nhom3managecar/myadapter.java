@@ -27,6 +27,7 @@ public class myadapter extends FirebaseRecyclerAdapter<model, myadapter.myviewho
         holder.tenXe.setText("Tên xe:" + model.getTenXe());
         holder.ngayMua.setText("Ngày mua:" + model.getNgayXuat());
         holder.ngayHetBh.setText("Ngày Hết Bh:" + model.getNgayHetBh());
+ ;
         //Glide.with(holder.img.getContext()).load(model.getPurl()).into(holder.img);
     }
 
@@ -51,6 +52,7 @@ public class myadapter extends FirebaseRecyclerAdapter<model, myadapter.myviewho
             tenXe = (TextView) itemView.findViewById(R.id.emailtext);
             ngayMua = (TextView) itemView.findViewById(R.id.tvNgayMua);
             ngayHetBh = (TextView) itemView.findViewById(R.id.tvNgayHetBh);
+
             v = itemView;
         }
     }

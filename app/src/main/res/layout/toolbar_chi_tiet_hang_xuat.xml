@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/style_border_toolbar"
+    android:background="#fedc30">
+
+    <RelativeLayout style="@style/rl_toolbar_basic">
+
+        <ImageButton
+            android:id="@+id/icon_backspace_cap_nhat_sp"
+            android:layout_width="15dp"
+            android:layout_height="14dp"
+            android:background="@color/none"
+            android:visibility="invisible"
+            android:src="@drawable/ic_keyboard_backspace">
+
+        </ImageButton>
+
+        <TextView
+            android:id="@+id/title_toolbar_settings_notification"
+            style="@style/title_toolbar"
+            android:layout_toStartOf="@id/icon_more_nutrition_list"
+            android:layout_toLeftOf="@id/icon_more_nutrition_list"
+            android:layout_toEndOf="@id/icon_backspace_cap_nhat_sp"
+            android:layout_toRightOf="@id/icon_backspace_cap_nhat_sp"
+            android:text="Chi Tiết Hàng Xuất"
+            android:textSize="25sp">
+
+        </TextView>
+
+        <ImageButton
+            android:id="@+id/icon_more_nutrition_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+
+            android:layout_alignParentRight="true"
+            android:background="@color/none"
+            android:src="@drawable/ic_space_bar"
+            android:visibility="invisible">
+
+        </ImageButton>
+    </RelativeLayout>
+
+</RelativeLayout>
