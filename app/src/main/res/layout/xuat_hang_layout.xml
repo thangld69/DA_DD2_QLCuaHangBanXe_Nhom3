@@ -30,8 +30,30 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
     </androidx.recyclerview.widget.RecyclerView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginRight="5dp"
+        android:gravity="right"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Doanh thu: "
+            android:textSize="20dp"/>
+        <TextView
+            android:id="@+id/txtDoanhThu"
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0vnd"
+            android:textSize="20dp"
+            android:textColor="#DC1212"/>
+    </LinearLayout>
 
 </LinearLayout>

@@ -45,16 +45,19 @@ import com.google.firebase.storage.StorageReference;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-public class XuatHangFragment extends Fragment{
+public class XuatHangFragment extends Fragment implements ValueEventListener{
 
     View view;
     RecyclerView recyclerView;
     myadapter_DsHangXuat adapter;
     EditText search;
+    FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+    DatabaseReference databaseReference = firebaseDatabase.getReference().child("hang_xuat").child("giaBan");
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.xuat_hang_layout,container,false);
+        databaseReference.addValueEventListener(this);
         recyclerView = view.findViewById(R.id.recycler_view);
         search = view.findViewById(R.id.searchCar);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -102,5 +105,15 @@ public class XuatHangFragment extends Fragment{
     public void onStop() {
         super.onStop();
         adapter.stopListening();
+    }
+
+    @Override
+    public void onDataChange(@NonNull DataSnapshot snapshot) {
+        //Log.d("ktne",snapshot.getValue().toString().toString());
+    }
+
+    @Override
+    public void onCancelled(@NonNull DatabaseError error) {
+
     }
 }
