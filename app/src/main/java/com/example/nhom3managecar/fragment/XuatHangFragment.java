@@ -27,6 +27,7 @@ import com.example.nhom3managecar.CapNhatHangActivity;
 import com.example.nhom3managecar.MainAdapter;
 import com.example.nhom3managecar.R;
 import com.example.nhom3managecar.data_models.ModelCar;
+import com.example.nhom3managecar.data_models.XuatHang_Model;
 import com.example.nhom3managecar.data_models.model;
 import com.example.nhom3managecar.myadapter;
 import com.example.nhom3managecar.myadapter_DsHangXuat;
@@ -43,7 +44,11 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
 
 public class XuatHangFragment extends Fragment implements ValueEventListener{
 
@@ -51,8 +56,9 @@ public class XuatHangFragment extends Fragment implements ValueEventListener{
     RecyclerView recyclerView;
     myadapter_DsHangXuat adapter;
     EditText search;
+    TextView txtDoanhThu;
     FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-    DatabaseReference databaseReference = firebaseDatabase.getReference().child("hang_xuat").child("giaBan");
+    DatabaseReference databaseReference = firebaseDatabase.getReference().child("hang_xuat");
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -60,7 +66,11 @@ public class XuatHangFragment extends Fragment implements ValueEventListener{
         databaseReference.addValueEventListener(this);
         recyclerView = view.findViewById(R.id.recycler_view);
         search = view.findViewById(R.id.searchCar);
+        txtDoanhThu = view.findViewById(R.id.txtDoanhThu);
+
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        //txtDoanhThu.setText("giaBanNe");
+
         txtSearch("");
         search.addTextChangedListener(new TextWatcher() {
             @Override
@@ -109,7 +119,26 @@ public class XuatHangFragment extends Fragment implements ValueEventListener{
 
     @Override
     public void onDataChange(@NonNull DataSnapshot snapshot) {
-        //Log.d("ktne",snapshot.getValue().toString().toString());
+        Iterable<DataSnapshot> nodeChild = snapshot.getChildren();
+        XuatHang_Model xuatHang_model = null;
+        for(DataSnapshot dataSnapshot1 : nodeChild){
+            //Log.d("kt",dataSnapshot1.toString());
+             xuatHang_model = dataSnapshot1.getValue(XuatHang_Model.class);
+            //List<String> td = (ArrayList<String>) dataSnapshot1.getValue();
+
+        //Log.d("ktne",xuatHang_model.getGiaBan());
+
+            String tong = xuatHang_model.getGiaBan()+xuatHang_model.getGiaBan();
+        //int doanhThu = Integer.parseInt(tong);
+//        txtDoanhThu.setText(tong);
+        }
+        txtDoanhThu.setText(xuatHang_model.getGiaBan());
+        
+//        XuatHang_Model xuatHang_model = snapshot.getValue(XuatHang_Model.class);
+//        //Log.d("ktne",xuatHang_model.getGiaBan().toString());
+//        txtDoanhThu.setText(xuatHang_model.getGiaBan().toString());
+//        //txtDoanhThu.setText(snapshot.getValue().toString());
+
     }
 
     @Override

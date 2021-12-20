@@ -233,14 +233,25 @@ public class MainAdapter extends FirebaseRecyclerAdapter<ModelCar,MainAdapter.my
                                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void unused) {
-                                        Toast.makeText(holder.maxe.getContext(), "Update Success", Toast.LENGTH_SHORT).show();
-                                        dialogPlus.dismiss();
+                                        androidx.appcompat.app.AlertDialog.Builder alert = new androidx.appcompat.app.AlertDialog.Builder(v.getContext());
+                                        alert.setMessage("Cập nhật thành công").setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                dialogPlus.dismiss();
+                                            }
+                                        }).show();
+
                                     }
                                 }).addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(holder.maxe.getContext(), "Update Failed", Toast.LENGTH_SHORT).show();
-                                dialogPlus.dismiss();
+                                androidx.appcompat.app.AlertDialog.Builder alert = new androidx.appcompat.app.AlertDialog.Builder(v.getContext());
+                                alert.setMessage("Cập nhật thất bại").setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialogPlus.dismiss();
+                                    }
+                                }).show();
                             }
                         });
                     }
