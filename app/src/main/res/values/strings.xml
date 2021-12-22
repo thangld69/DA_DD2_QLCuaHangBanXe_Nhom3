@@ -16,6 +16,7 @@
     <string name="dangXuat_nav">Đăng xuất</string>
     <string name="thoat_nav">Thoát</string>
     <string name="sdt">Số điện thoại</string>
+    <string name="xuatFile">Xuất File</string>
 
     <string name="tim_kiem">Nhập vào sản phẩm cần tìm</string>
     <string name="drawer_open_nav">Open navigation drawer</string>

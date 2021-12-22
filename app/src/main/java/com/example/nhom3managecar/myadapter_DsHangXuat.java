@@ -1,11 +1,14 @@
 package com.example.nhom3managecar;
 
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Environment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -29,6 +33,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.orhanobut.dialogplus.DialogPlus;
 import com.orhanobut.dialogplus.ViewHolder;
 
+import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Workbook;
+
+import java.io.File;
+import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -41,6 +53,7 @@ public class myadapter_DsHangXuat extends FirebaseRecyclerAdapter<model, myadapt
     public myadapter_DsHangXuat(@NonNull FirebaseRecyclerOptions<model> options) {
         super(options);
     }
+
     private Button btnChonNgay, btnChonNgayHetBh,btnXuat;
     private EditText edtNgayXuat, edtNgayHenBh, edtQuantity;
     private int mYear, mMonth, mDay;
@@ -49,9 +62,11 @@ public class myadapter_DsHangXuat extends FirebaseRecyclerAdapter<model, myadapt
     private int soLuongSP;
     View views;
 
+
     private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
     @Override
     protected void onBindViewHolder(@NonNull myviewholder holder, int position, @NonNull model model) {
+
 
         //ds hang xuat
         holder.dsTenKh.setText(model.getTenKh());
@@ -59,6 +74,9 @@ public class myadapter_DsHangXuat extends FirebaseRecyclerAdapter<model, myadapt
         holder.dsTenXe.setText(model.getTenXe());
         holder.dsSoLuong.setText(model.getSoLuong());
         //Glide.with(holder.img.getContext()).load(model.getPurl()).into(holder.img);
+
+
+
         holder.v.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -66,6 +84,8 @@ public class myadapter_DsHangXuat extends FirebaseRecyclerAdapter<model, myadapt
                         .setContentHolder(new ViewHolder(R.layout.chi_tiet_ds_hang_xuat))
                         .setExpanded(true,1700)
                         .create();
+
+
                 View view = dialogPlus.getHolderView();
                 EditText tenKh = view.findViewById(R.id.edtTenKhachHangCT);
                 EditText sdt = view.findViewById(R.id.edtSdt);
@@ -77,6 +97,7 @@ public class myadapter_DsHangXuat extends FirebaseRecyclerAdapter<model, myadapt
                 EditText ngayXuat = view.findViewById(R.id.edtNgayXuat);
                 EditText ngayHetBh = view.findViewById(R.id.edtNgayHetBh);
                 edtQuantity = (EditText) view.findViewById(R.id.edtQuantity);
+                Button btnXuatFile = view.findViewById(R.id.btnXuatFile);
 
 
                 tenKh.setText(model.getTenKh());
@@ -90,6 +111,58 @@ public class myadapter_DsHangXuat extends FirebaseRecyclerAdapter<model, myadapt
                 ngayHetBh.setText(model.getNgayHetBh());
 
                 dialogPlus.show();
+                Calendar calendar = Calendar.getInstance();
+                String filePath1 = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS).toString();
+                File filePath = new File(filePath1,tenKh.getText().toString()+calendar.getTime()+ ".xls");
+                btnXuatFile.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        HSSFWorkbook hssfWorkbook = new HSSFWorkbook();
+                        HSSFSheet hssfSheet = hssfWorkbook.createSheet("Thông Tin Khách Hàng");
+                        hssfSheet.createRow(0);
+                        hssfSheet.getRow(0).createCell(0).setCellValue("Tên Khách Hàng");
+                        hssfSheet.getRow(0).createCell(1).setCellValue("SDT");
+                        hssfSheet.getRow(0).createCell(2).setCellValue("Mã Hàng");
+                        hssfSheet.getRow(0).createCell(3).setCellValue("Tên Hàng");
+                        hssfSheet.getRow(0).createCell(4).setCellValue("Số Lượng");
+                        hssfSheet.getRow(0).createCell(5).setCellValue("Giá Bán");
+                        hssfSheet.getRow(0).createCell(6).setCellValue("Ngày Xuất Hàng");
+                        hssfSheet.getRow(0).createCell(7).setCellValue("Ngày Hết Bảo Hành");
+                        hssfSheet.createRow(1);
+                        hssfSheet.getRow(1).createCell(0).setCellValue(tenKh.getText().toString());
+                        hssfSheet.getRow(1).createCell(1).setCellValue(sdt.getText().toString());
+                        hssfSheet.getRow(1).createCell(2).setCellValue(maXe.getText().toString());
+                        hssfSheet.getRow(1).createCell(3).setCellValue(tenXe.getText().toString());
+                        hssfSheet.getRow(1).createCell(4).setCellValue(soLuong.getText().toString());
+                        hssfSheet.getRow(1).createCell(5).setCellValue(giaBan.getText().toString());
+                        hssfSheet.getRow(1).createCell(6).setCellValue(ngayXuat.getText().toString());
+                        hssfSheet.getRow(1).createCell(7).setCellValue(ngayHetBh.getText().toString());
+
+                        try {
+                            if (!filePath.exists()){
+                                filePath.createNewFile();
+                            }
+
+                            FileOutputStream fileOutputStream= new FileOutputStream(filePath);
+                            hssfWorkbook.write(fileOutputStream);
+
+                            if (fileOutputStream!=null){
+                                fileOutputStream.flush();
+                                fileOutputStream.close();
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                        androidx.appcompat.app.AlertDialog.Builder alert = new androidx.appcompat.app.AlertDialog.Builder(v.getContext());
+                        alert.setTitle("Thông Báo");
+                        alert.setMessage("Xuất File thành công\n" +"File được lưu tại:" +filePath1.toString()).setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        }).show();
+                    }
+                });
             }
         });
         holder.btnEdit.setOnClickListener(new View.OnClickListener() {
@@ -315,7 +388,6 @@ public class myadapter_DsHangXuat extends FirebaseRecyclerAdapter<model, myadapt
         });
     }
 
-
     @NonNull
     @Override
     public myviewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -346,6 +418,8 @@ public class myadapter_DsHangXuat extends FirebaseRecyclerAdapter<model, myadapt
             btnDelete = itemView.findViewById(R.id.btnDelete);
             v = itemView;
         }
+
     }
+
 }
 

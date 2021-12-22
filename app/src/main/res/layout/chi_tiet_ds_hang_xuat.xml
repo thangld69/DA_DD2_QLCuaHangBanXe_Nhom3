@@ -220,13 +220,13 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/btnXuat"
+            android:id="@+id/btnXuatFile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/button_main_item"
             android:backgroundTint="@color/buttonCam"
-            android:text="@string/xuatHang_nav"
-            android:visibility="gone"
+            android:text="@string/xuatFile"
+            android:visibility="visible"
             android:textSize="12sp"></Button>
 
     </LinearLayout>

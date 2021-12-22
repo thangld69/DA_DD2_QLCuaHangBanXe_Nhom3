@@ -1,6 +1,8 @@
 package com.example.nhom3managecar;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -9,6 +11,7 @@ import android.widget.Toast;
 import android.view.Window;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 public class MenuActivity extends AppCompatActivity {
     private Button btnLogin,btnRegister;
@@ -22,6 +25,7 @@ public class MenuActivity extends AppCompatActivity {
         setContentView(R.layout.login_register_activity);
         setControl();
         setEvent();
+
     }
 
     private void setEvent() {
