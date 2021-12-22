@@ -50,7 +50,7 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
-public class XuatHangFragment extends Fragment implements ValueEventListener{
+public class XuatHangFragment extends Fragment{
 
     View view;
     RecyclerView recyclerView;
@@ -63,13 +63,25 @@ public class XuatHangFragment extends Fragment implements ValueEventListener{
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.xuat_hang_layout,container,false);
-        databaseReference.addValueEventListener(this);
+        //databaseReference.addValueEventListener(this);
         recyclerView = view.findViewById(R.id.recycler_view);
         search = view.findViewById(R.id.searchCar);
         txtDoanhThu = view.findViewById(R.id.txtDoanhThu);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         //txtDoanhThu.setText("giaBanNe");
+        databaseReference.child("hang_xuat").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                XuatHang_Model xuatHang_model = snapshot.getValue(XuatHang_Model.class);
+                //Log.d("clm","gia ban:"+xuatHang_model.getGiaBan().toString());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         txtSearch("");
         search.addTextChangedListener(new TextWatcher() {
@@ -117,32 +129,32 @@ public class XuatHangFragment extends Fragment implements ValueEventListener{
         adapter.stopListening();
     }
 
-    @Override
-    public void onDataChange(@NonNull DataSnapshot snapshot) {
-        Iterable<DataSnapshot> nodeChild = snapshot.getChildren();
-        XuatHang_Model xuatHang_model = null;
-        for(DataSnapshot dataSnapshot1 : nodeChild){
-            //Log.d("kt",dataSnapshot1.toString());
-             xuatHang_model = dataSnapshot1.getValue(XuatHang_Model.class);
-            //List<String> td = (ArrayList<String>) dataSnapshot1.getValue();
-
-        //Log.d("ktne",xuatHang_model.getGiaBan());
-
-            String tong = xuatHang_model.getGiaBan()+xuatHang_model.getGiaBan();
-        //int doanhThu = Integer.parseInt(tong);
-//        txtDoanhThu.setText(tong);
-        }
-        txtDoanhThu.setText(xuatHang_model.getGiaBan());
-        
-//        XuatHang_Model xuatHang_model = snapshot.getValue(XuatHang_Model.class);
-//        //Log.d("ktne",xuatHang_model.getGiaBan().toString());
-//        txtDoanhThu.setText(xuatHang_model.getGiaBan().toString());
-//        //txtDoanhThu.setText(snapshot.getValue().toString());
-
-    }
-
-    @Override
-    public void onCancelled(@NonNull DatabaseError error) {
-
-    }
+//    @Override
+//    public void onDataChange(@NonNull DataSnapshot snapshot) {
+//        Iterable<DataSnapshot> nodeChild = snapshot.getChildren();
+//        XuatHang_Model xuatHang_model = null;
+//        for(DataSnapshot dataSnapshot1 : nodeChild){
+//            //Log.d("kt",dataSnapshot1.toString());
+//             xuatHang_model = dataSnapshot1.getValue(XuatHang_Model.class);
+//            //List<String> td = (ArrayList<String>) dataSnapshot1.getValue();
+//
+//        //Log.d("ktne",xuatHang_model.getGiaBan());
+//
+//            String tong = xuatHang_model.getGiaBan()+xuatHang_model.getGiaBan();
+//        //int doanhThu = Integer.parseInt(tong);
+////        txtDoanhThu.setText(tong);
+//        }
+//        txtDoanhThu.setText(xuatHang_model.getGiaBan());
+//
+////        XuatHang_Model xuatHang_model = snapshot.getValue(XuatHang_Model.class);
+////        //Log.d("ktne",xuatHang_model.getGiaBan().toString());
+////        txtDoanhThu.setText(xuatHang_model.getGiaBan().toString());
+////        //txtDoanhThu.setText(snapshot.getValue().toString());
+//
+//    }
+//
+//    @Override
+//    public void onCancelled(@NonNull DatabaseError error) {
+//
+//    }
 }
