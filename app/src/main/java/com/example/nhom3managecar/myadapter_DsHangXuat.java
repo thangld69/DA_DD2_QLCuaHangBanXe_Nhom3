@@ -113,7 +113,7 @@ public class myadapter_DsHangXuat extends FirebaseRecyclerAdapter<model, myadapt
                 dialogPlus.show();
                 Calendar calendar = Calendar.getInstance();
                 String filePath1 = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS).toString();
-                File filePath = new File(filePath1,tenKh.getText().toString()+calendar.getTime()+ ".xls");
+                File filePath = new File(filePath1,tenKh.getText().toString()+"_"+calendar.getTimeInMillis()+ ".xls");
                 btnXuatFile.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
