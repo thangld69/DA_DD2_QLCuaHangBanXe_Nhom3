@@ -38,6 +38,7 @@ public class XuatHangActivity extends AppCompatActivity {
     private TextView txtSoLuongSP;
     private Button btnDecs, btnInc;
     private int soLuongSP;
+    private String eTenKh = "", eSdt = "", engayXuat = "", eNgayHetBh = "";
 
     private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
@@ -70,46 +71,59 @@ public class XuatHangActivity extends AppCompatActivity {
             public void onClick(View view) {
 //                FirebaseDatabase database = FirebaseDatabase.getInstance();
 //                DatabaseReference reference = database.getReference("hang_xuat");
-                Map<String,Object> map  = new HashMap<>();
-                map.put("tenKh",edtTenKh.getText().toString());
-                map.put("sdt",edtSdt.getText().toString());
-                map.put("maXe",maXe.getText().toString());
-                map.put("tenXe",tenXe.getText().toString());
-                map.put("nhomXe",nhomHang.getText().toString());
-                map.put("soLuong",edtQuantity.getText().toString());
-                map.put("giaBan",giaBan.getText().toString());
-                map.put("ngayXuat", edtNgayXuat.getText().toString());
-                map.put("ngayHetBh", edtNgayHenBh.getText().toString());
-                //map.put("turl",imageUrl.getText().toString());
-                FirebaseDatabase.getInstance().getReference().child("hang_xuat").push()
-                        .setValue(map).addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        AlertDialog.Builder alert = new AlertDialog.Builder(XuatHangActivity.this);
-                        alert.setMessage("Xuất hàng thành công").setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                //progressDialog.dismiss();
-                                clear();
-                                edtTenKh.requestFocus();
-                            }
-                        }).show();
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        AlertDialog.Builder alert = new AlertDialog.Builder(XuatHangActivity.this);
-                        alert.setMessage("xuât hàng thất bại").setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
+                eTenKh = edtTenKh.getText().toString();
+                eSdt = edtSdt.getText().toString();
+                engayXuat = edtNgayXuat.getText().toString();
+                eNgayHetBh = edtNgayHenBh.getText().toString();
+                if (eTenKh.isEmpty()) {
+                    edtTenKh.setError("Bạn chưa nhập tên khách hàng!");
+                } else if (eSdt.isEmpty()) {
+                    edtSdt.setError("Bạn chưa nhập Số điện thoại!");
+                } else if (engayXuat.isEmpty()) {
+                    edtNgayXuat.setError("Bạn chưa chọn ngày xuất!");
+                } else if (eNgayHetBh.isEmpty()) {
+                    edtNgayHenBh.setError("Bạn chưa chọn ngày hết bảo hành!");
+                } else {
+                    Map<String,Object> map  = new HashMap<>();
+                    map.put("tenKh",edtTenKh.getText().toString());
+                    map.put("sdt",edtSdt.getText().toString());
+                    map.put("maXe",maXe.getText().toString());
+                    map.put("tenXe",tenXe.getText().toString());
+                    map.put("nhomXe",nhomHang.getText().toString());
+                    map.put("soLuong",edtQuantity.getText().toString());
+                    map.put("giaBan",giaBan.getText().toString());
+                    map.put("ngayXuat", edtNgayXuat.getText().toString());
+                    map.put("ngayHetBh", edtNgayHenBh.getText().toString());
+                    //map.put("turl",imageUrl.getText().toString());
+                    FirebaseDatabase.getInstance().getReference().child("hang_xuat").push()
+                            .setValue(map).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            AlertDialog.Builder alert = new AlertDialog.Builder(XuatHangActivity.this);
+                            alert.setMessage("Xuất hàng thành công").setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    //progressDialog.dismiss();
+                                    clear();
+                                    edtTenKh.requestFocus();
+                                }
+                            }).show();
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            AlertDialog.Builder alert = new AlertDialog.Builder(XuatHangActivity.this);
+                            alert.setMessage("xuât hàng thất bại").setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
 //                                progressDialog.dismiss();
 //                                clear();
 //                                maXe.requestFocus();
-                            }
-                        }).show();
-                    }
-                });
-
+                                }
+                            }).show();
+                        }
+                    });
+                }
             }
         });
         btnDecs.setOnClickListener(new View.OnClickListener() {
@@ -168,6 +182,7 @@ public class XuatHangActivity extends AppCompatActivity {
         btnChonNgayHetBh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 // Get Current Date
                 final Calendar c = Calendar.getInstance();
                 mYear = c.get(Calendar.YEAR);
