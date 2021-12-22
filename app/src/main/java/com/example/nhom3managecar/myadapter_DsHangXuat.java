@@ -125,7 +125,7 @@ public class myadapter_DsHangXuat extends FirebaseRecyclerAdapter<model, myadapt
                         hssfSheet.getRow(0).createCell(2).setCellValue("Mã Hàng");
                         hssfSheet.getRow(0).createCell(3).setCellValue("Tên Hàng");
                         hssfSheet.getRow(0).createCell(4).setCellValue("Số Lượng");
-                        hssfSheet.getRow(0).createCell(5).setCellValue("Giá Bán");
+                        hssfSheet.getRow(0).createCell(5).setCellValue("Thành Tiền");
                         hssfSheet.getRow(0).createCell(6).setCellValue("Ngày Xuất Hàng");
                         hssfSheet.getRow(0).createCell(7).setCellValue("Ngày Hết Bảo Hành");
                         hssfSheet.createRow(1);

@@ -10,60 +10,34 @@
     >
     <include
         android:id="@+id/include_toolbar_nutrition_list"
-        layout="@layout/toolbar_xuat_hang"></include>
+        layout="@layout/toolbar_xem_doanh_thu"></include>
 
 
-    <EditText
-        android:id="@+id/searchCar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="20dp"
-        android:background="@drawable/input_search"
-        android:drawableLeft="@drawable/ic_baseline_search_24"
-        android:hint="@string/timKiem"
-        android:padding="10dp"
-        android:textColor="@color/white"
-        android:textSize="20dp" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginRight="5dp"
+        android:layout_marginTop="250dp"
         android:gravity="center"
         android:layout_marginBottom="10dp"
+        android:layout_gravity="center_horizontal"
         android:orientation="horizontal">
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/btnXemDoanhThu"
-            style="@style/button_main_item"
-            android:text="Xem Doanh Thu"/>
         <TextView
             android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="gone"
-            android:text="Doanh thu: "
+            android:text="Tổng Doanh thu: "
+            android:textColor="@color/black"
             android:textSize="20dp"/>
         <TextView
-            android:id="@+id/txtDoanhThu"
+            android:id="@+id/txtDoanhThuTong"
             android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="gone"
             android:text="0vnd"
             android:textSize="20dp"
             android:textColor="#DC1212"/>
     </LinearLayout>
 
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-    </androidx.recyclerview.widget.RecyclerView>
 
 </LinearLayout>

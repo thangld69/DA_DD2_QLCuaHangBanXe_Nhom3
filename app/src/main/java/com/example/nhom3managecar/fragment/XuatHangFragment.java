@@ -26,6 +26,8 @@ import com.bumptech.glide.Glide;
 import com.example.nhom3managecar.CapNhatHangActivity;
 import com.example.nhom3managecar.MainAdapter;
 import com.example.nhom3managecar.R;
+import com.example.nhom3managecar.XemDoanhThuActivity;
+import com.example.nhom3managecar.XuatHangActivity;
 import com.example.nhom3managecar.data_models.ModelCar;
 import com.example.nhom3managecar.data_models.XuatHang_Model;
 import com.example.nhom3managecar.data_models.model;
@@ -50,23 +52,35 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
-public class XuatHangFragment extends Fragment{
+public class XuatHangFragment extends Fragment implements ValueEventListener{
 
     View view;
     RecyclerView recyclerView;
     myadapter_DsHangXuat adapter;
     EditText search;
     TextView txtDoanhThu;
+    Button btnXemDoanhThu;
+    int tongDoanhThu = 0;
+    int doanhThu = 0;
     FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     DatabaseReference databaseReference = firebaseDatabase.getReference().child("hang_xuat");
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.xuat_hang_layout,container,false);
-        //databaseReference.addValueEventListener(this);
+        databaseReference.addValueEventListener(this);
         recyclerView = view.findViewById(R.id.recycler_view);
         search = view.findViewById(R.id.searchCar);
         txtDoanhThu = view.findViewById(R.id.txtDoanhThu);
+        btnXemDoanhThu = view.findViewById(R.id.btnXemDoanhThu);
+        btnXemDoanhThu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), XemDoanhThuActivity.class);
+                intent.putExtra("tongDoanhThu",txtDoanhThu.getText().toString());
+                startActivity(intent);
+            }
+        });
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         //txtDoanhThu.setText("giaBanNe");
@@ -129,32 +143,24 @@ public class XuatHangFragment extends Fragment{
         adapter.stopListening();
     }
 
-//    @Override
-//    public void onDataChange(@NonNull DataSnapshot snapshot) {
-//        Iterable<DataSnapshot> nodeChild = snapshot.getChildren();
-//        XuatHang_Model xuatHang_model = null;
-//        for(DataSnapshot dataSnapshot1 : nodeChild){
-//            //Log.d("kt",dataSnapshot1.toString());
-//             xuatHang_model = dataSnapshot1.getValue(XuatHang_Model.class);
-//            //List<String> td = (ArrayList<String>) dataSnapshot1.getValue();
-//
-//        //Log.d("ktne",xuatHang_model.getGiaBan());
-//
-//            String tong = xuatHang_model.getGiaBan()+xuatHang_model.getGiaBan();
-//        //int doanhThu = Integer.parseInt(tong);
-////        txtDoanhThu.setText(tong);
-//        }
-//        txtDoanhThu.setText(xuatHang_model.getGiaBan());
-//
-////        XuatHang_Model xuatHang_model = snapshot.getValue(XuatHang_Model.class);
-////        //Log.d("ktne",xuatHang_model.getGiaBan().toString());
-////        txtDoanhThu.setText(xuatHang_model.getGiaBan().toString());
-////        //txtDoanhThu.setText(snapshot.getValue().toString());
-//
-//    }
-//
-//    @Override
-//    public void onCancelled(@NonNull DatabaseError error) {
-//
-//    }
+    @Override
+    public void onDataChange(@NonNull DataSnapshot snapshot) {
+        Iterable<DataSnapshot> nodeChild = snapshot.getChildren();
+        XuatHang_Model xuatHang_model = null;
+
+        for(DataSnapshot dataSnapshot1 : nodeChild){
+            //Log.d("kt",dataSnapshot1.toString());
+             xuatHang_model = dataSnapshot1.getValue(XuatHang_Model.class);
+            int doanhThu = ((Integer.valueOf(xuatHang_model.getGiaBan()))) ;//* Integer.valueOf(xuatHang_model.getSoLuong())
+            tongDoanhThu = tongDoanhThu + doanhThu;
+
+            txtDoanhThu.setText(String.valueOf(tongDoanhThu));
+        }
+        //Log.d("kt",String.valueOf(tongDoanhThu));
+    }
+
+    @Override
+    public void onCancelled(@NonNull DatabaseError error) {
+
+    }
 }
