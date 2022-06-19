@@ -9,3 +9,6 @@
 * Ngôn ngữ thực hiện:JAVA
 * Sử dụng firebase để quản lý cơ sở dữ liệu
 * máy ảo để chạy ứng dụng: Pixel_3a_Edited_API_30,Android 11,kích thước màn hình 1080 * 2200:xxhdpi
+
+## Hình ảnh dự án
+[click vào đây để xem](https://github.com/thangld69/DA_DD2_QLCuaHangBanXe_Nhom3/issues/1#issue-1276019647)
